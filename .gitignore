@@ -14,7 +14,7 @@ tags
 **/build/*
 /build
 !docs/build/*
-
+/classes
 lib/dokka.jar
 
 ### JetBrains template
