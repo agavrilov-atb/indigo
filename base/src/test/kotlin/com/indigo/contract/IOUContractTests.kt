@@ -1,6 +1,6 @@
 package com.indigo.contract
 
-import com.indigo.contract.IOUContract.Companion.IOU_CONTRACT_ID
+import com.indigo.contract. IOUContract.Companion.IOU_CONTRACT_ID
 import com.indigo.state.IOUState
 import net.corda.testing.*
 import org.junit.After
