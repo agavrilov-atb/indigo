@@ -1,6 +1,6 @@
-package net.corda.examples.oracle.client.plugin
+package com.indigo.plugin
 
-import net.corda.examples.oracle.client.api.ClientApi
+import com.indigo.api.ClientApi
 import net.corda.webserver.services.WebServerPluginRegistry
 import java.util.function.Function
 

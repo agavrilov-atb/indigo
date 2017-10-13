@@ -1,10 +1,10 @@
-package net.corda.examples.oracle.client.api
+package com.indigo.api
 
 import com.indigo.contract.PrimeState
 import net.corda.core.messaging.CordaRPCOps
 import net.corda.core.messaging.vaultQueryBy
 import net.corda.core.utilities.getOrThrow
-import net.corda.examples.oracle.client.flow.CreatePrime
+import com.indigo.flow.CreatePrime
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.Produces

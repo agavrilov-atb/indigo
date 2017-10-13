@@ -3,7 +3,7 @@ package net.corda.examples.oracle.client
 import com.indigo.contract.PrimeState
 import net.corda.core.identity.CordaX500Name
 import net.corda.core.utilities.getOrThrow
-import net.corda.examples.oracle.client.flow.CreatePrime
+import com.indigo.flow.CreatePrime
 import net.corda.examples.oracle.service.flow.QueryHandler
 import net.corda.examples.oracle.service.flow.SignHandler
 import net.corda.node.internal.StartedNode

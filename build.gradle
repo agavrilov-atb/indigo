@@ -73,8 +73,8 @@ dependencies {
 
     // CorDapp dependencies
     // Specify your cordapp's dependencies below, including dependent CorDapps.
-    cordapp project(":base")
-    cordapp project(":oracle-client")
+    cordapp project(":oracle-base")
+    cordapp project(":indigo-client")
     cordapp project(":oracle-service")
 }
 

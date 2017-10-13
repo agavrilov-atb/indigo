@@ -1,4 +1,4 @@
-package net.corda.examples.oracle.client.flow
+package com.indigo.flow
 
 import co.paralleluniverse.fibers.Suspendable
 import net.corda.core.contracts.Command
@@ -13,8 +13,6 @@ import net.corda.core.utilities.ProgressTracker
 import com.indigo.contract.PRIME_PROGRAM_ID
 import com.indigo.contract.PrimeContract
 import com.indigo.contract.PrimeState
-import com.indigo.flow.QueryPrime
-import com.indigo.flow.SignPrime
 import java.util.function.Predicate
 
 // The client-side flow that:
