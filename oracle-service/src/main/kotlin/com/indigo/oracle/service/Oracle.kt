@@ -1,5 +1,6 @@
 package com.indigo.oracle.service
 
+import com.beust.klaxon.JsonObject
 import net.corda.core.flows.FlowException
 import net.corda.core.node.ServiceHub
 import net.corda.core.node.services.CordaService
@@ -14,22 +15,27 @@ import org.hyperledger.indy.sdk.wallet.Wallet
 import java.io.File
 import org.hyperledger.indy.sdk.pool.PoolJSONParameters.OpenPoolLedgerJSONParameter
 import org.hyperledger.indy.sdk.pool.PoolJSONParameters.CreatePoolLedgerConfigJSONParameter
+import com.beust.klaxon.Parser
+import com.beust.klaxon.obj
+import com.beust.klaxon.string
 
 @CordaService
 class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
-    val USER_DID = "W4SGRU86Z58d6TV7PBUe6g"
-    val TRUSTEE_DID = "V4SGRU86Z58d6TV7PBUe6f"
-    val TRUSTEE_VERKEY = "GJ1SzoWzavQYfNL9XkaJdrQejfztN4XqdsiV4ct3LXKL"
-    val TRUSTEE_SEED = "000000000000000000000000Trustee1"
 
-    fun generateDID(): String {
+    fun generateDID(): String? {
+        val USER_DID = "W4SGRU86Z58d6TV7PBUe6g"
+        val TRUSTEE_DID = "V4SGRU86Z58d6TV7PBUe6f"
+        val TRUSTEE_VERKEY = "GJ1SzoWzavQYfNL9XkaJdrQejfztN4XqdsiV4ct3LXKL"
+        val TRUSTEE_SEED = "000000000000000000000000Trustee1"
+        val poolname = "localhost"
+
         if (!LibIndy.isInitialized()) {
             LibIndy.init(File("oracle-service/lib/libindy.dylib"))
         }
 
         try {
             println("=== CREATE TRUSTEE WALLET ===")
-            val createWalletResultTrustee = Wallet.createWallet("localhost", "trusteewallet", "default", null, null).get()
+            val createWalletResultTrustee = Wallet.createWallet(poolname, "trusteewallet", "default", null, null).get()
             println("Created Trustee Wallet:" + createWalletResultTrustee)
         } catch (e: Exception) {
             if(e.cause!!::class.java.equals(IndyException::class.java)
@@ -42,7 +48,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
 
         try {
             println("=== CREATE USER WALLET ===")
-            val createWalletResultUser = Wallet.createWallet("localhost", "userwallet", "default", null, null).get()
+            val createWalletResultUser = Wallet.createWallet(poolname, "userwallet", "default", null, null).get()
             println("CreateWalletResultUser: " + createWalletResultUser)
         } catch (e: Exception) {
             if(e.cause!!::class.java.equals(IndyException::class.java)
@@ -57,7 +63,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
             println("=== CREATE POOL ===")
             val createPoolLedgerConfigJSONParameter = CreatePoolLedgerConfigJSONParameter("/Users/austinmoothart/dev/project-indigo/oracle-service/lib/localhost.txn")
             println("CreatePoolLedgerConfigJSONParameter: " + createPoolLedgerConfigJSONParameter)
-            Pool.createPoolLedgerConfig("localhost", createPoolLedgerConfigJSONParameter.toJson()).get()
+            Pool.createPoolLedgerConfig(poolname, createPoolLedgerConfigJSONParameter.toJson()).get()
         } catch (e: Exception) {
             if(e.cause!!::class.java.equals(IndyException::class.java)
                     && (e.cause as IndyException).errorCode.toString() == "PoolLedgerConfigAlreadyExistsError") {
@@ -67,42 +73,48 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
             }
         }
 
-        try {
-            println("=== OPEN POOL ===")
-            val openPoolLedgerJSONParameter = OpenPoolLedgerJSONParameter(java.lang.Boolean.TRUE, null, null)
-            println("OpenPoolLedgerJSONParameter: " + openPoolLedgerJSONParameter)
-            val pool = Pool.openPoolLedger("localhost", openPoolLedgerJSONParameter.toJson()).get()
+        println("=== OPEN POOL ===")
+        val openPoolLedgerJSONParameter = OpenPoolLedgerJSONParameter(java.lang.Boolean.TRUE, null, null)
+        println("OpenPoolLedgerJSONParameter: " + openPoolLedgerJSONParameter)
+        val pool = Pool.openPoolLedger(poolname, openPoolLedgerJSONParameter.toJson()).get()
 
-            println("=== OPEN TRUSTEE WALLET ===")
-            var trusteeWallet = Wallet.openWallet("trusteewallet", null, null).get()
+        println("=== OPEN TRUSTEE WALLET ===")
+        var trusteeWallet = Wallet.openWallet("trusteewallet", null, null).get()
 
 
-            println("=== CREATE TRUSTEE DID ===")
-            val createAndStoreMyDidJSONParameterTrustee = SignusJSONParameters.CreateAndStoreMyDidJSONParameter(null, TRUSTEE_SEED, null, null)
-            println("CreateAndStoreMyDidJSONParameterTrustee: " + createAndStoreMyDidJSONParameterTrustee)
-            val createAndStoreMyDidResultTrustee = Signus.createAndStoreMyDid(trusteeWallet, createAndStoreMyDidJSONParameterTrustee.toJson()).get()
+        println("=== CREATE TRUSTEE DID ===")
+        val createAndStoreMyDidJSONParameterTrustee = SignusJSONParameters.CreateAndStoreMyDidJSONParameter(null, TRUSTEE_SEED, null, null)
+        println("CreateAndStoreMyDidJSONParameterTrustee: " + createAndStoreMyDidJSONParameterTrustee)
+        val createAndStoreMyDidResultTrustee = Signus.createAndStoreMyDid(trusteeWallet, createAndStoreMyDidJSONParameterTrustee.toJson()).get()
+        val newDid = createAndStoreMyDidResultTrustee.did
+        val newVerkey = createAndStoreMyDidResultTrustee.verkey
 
-            println("=== CREATE NYM REQUEST ===")
-            val buildNymRequestResult = Ledger.buildNymRequest(TRUSTEE_DID, USER_DID, TRUSTEE_VERKEY, null, null).get()
-            println("BuildNymRequestResult: " + buildNymRequestResult)
+        println("=== CREATE NYM REQUEST ===")
+        val buildNymRequestResult = Ledger.buildNymRequest(TRUSTEE_DID, USER_DID, TRUSTEE_VERKEY, null, null).get()
+        println("BuildNymRequestResult: " + buildNymRequestResult)
 
-            // submit request to ledger
-            println("=== SUBMIT ===")
-            val submitRequestResult = Ledger.signAndSubmitRequest(pool, trusteeWallet, TRUSTEE_DID, buildNymRequestResult).get()
-            println("SubmitRequestResult: " + submitRequestResult)
+        println("=== SUBMIT ===")
+        val submitRequestResult = Ledger.signAndSubmitRequest(pool, trusteeWallet, TRUSTEE_DID, buildNymRequestResult).get()
+        println("SubmitRequestResult: " + submitRequestResult)
+        val parser: Parser = Parser()
+        val json: JsonObject = parser.parse(StringBuilder(submitRequestResult)) as JsonObject
+        println("SubmitRequestResult: " + json)
+        val savedDid = json.obj("result")?.string("dest")
+        val savedVerkey = json.obj("result")?.string("verkey")
 
-            // close wallet
-            println("=== CLOSE WALLET ===")
-            trusteeWallet.closeWallet().get()
-
-            // close pool
-            println("=== CLOSE POOL ===")
-            pool.closePoolLedger().get()
-            return submitRequestResult
-        } catch (e: Exception) {
-            e.printStackTrace()
-            throw FlowException("Could not open Sovrin wallet: ", e)
+        if(newDid != savedDid) {
+            //throw exception?
         }
 
+        if(newVerkey != savedVerkey) {
+            //throw exception?
+        }
+
+        println("=== CLOSE WALLET ===")
+        trusteeWallet.closeWallet().get()
+
+        println("=== CLOSE POOL ===")
+        pool.closePoolLedger().get()
+        return savedDid
     }
 }
