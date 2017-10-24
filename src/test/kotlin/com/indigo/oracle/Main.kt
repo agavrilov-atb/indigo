@@ -1,4 +1,4 @@
-package net.corda.examples.oracle
+package com.indigo.oracle
 
 import net.corda.core.identity.CordaX500Name
 import net.corda.core.utilities.getOrThrow

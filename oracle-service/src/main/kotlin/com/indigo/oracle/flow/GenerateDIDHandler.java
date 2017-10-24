@@ -1,4 +1,4 @@
-package com.indigo.oracle;
+package com.indigo.oracle.flow;
 
 import co.paralleluniverse.fibers.Suspendable;
 import com.indigo.flow.GenerateDID;
@@ -6,7 +6,7 @@ import net.corda.core.flows.FlowException;
 import net.corda.core.flows.InitiatedBy;
 import net.corda.core.flows.FlowLogic;
 import net.corda.core.flows.FlowSession;
-import net.corda.examples.oracle.service.service.Oracle;
+import com.indigo.oracle.service.Oracle;
 
 @InitiatedBy(GenerateDID.class)
 public class GenerateDIDHandler extends FlowLogic<Void> {
