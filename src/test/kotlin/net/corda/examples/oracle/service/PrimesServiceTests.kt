@@ -1,8 +1,6 @@
 package net.corda.examples.oracle.service
 
-import com.indigo.contract.PRIME_PROGRAM_ID
-import com.indigo.contract.PrimeContract
-import com.indigo.contract.PrimeState
+import com.indigo.contract.*
 import net.corda.core.contracts.Command
 import net.corda.core.contracts.StateAndContract
 import net.corda.core.transactions.TransactionBuilder
@@ -13,6 +11,7 @@ import org.junit.Test
 import java.util.function.Predicate
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertNotNull
 
 class PrimesServiceTests : TestDependencyInjectionBase() {
     private val dummyServices = MockServices(listOf("com.indigo.contract"), CHARLIE_KEY)
@@ -62,5 +61,23 @@ class PrimesServiceTests : TestDependencyInjectionBase() {
                     }
                 })
         assertFailsWith<IllegalArgumentException> { oracle.sign(ftx) }
+    }
+
+    @Test
+    fun `generate a did`() {
+        val command = Command(DIDContract.Commands.Generate(), listOf(CHARLIE.owningKey))
+        val state = DIDState("foo", CHARLIE)
+        val stateAndContract = StateAndContract(state, DID_PROGRAM_ID)
+        val ftx = TransactionBuilder(DUMMY_NOTARY)
+                .withItems(stateAndContract, command)
+                .toWireTransaction(oracle.services)
+                .buildFilteredTransaction(Predicate {
+                    when (it) {
+                        is Command<*> -> oracle.services.myInfo.legalIdentities.first().owningKey in it.signers && it.value is DIDContract.Commands.Generate
+                        else -> false
+                    }
+                })
+        val did = oracle.generateDID()
+        assertNotNull(did, "Generated DID was null")
     }
 }

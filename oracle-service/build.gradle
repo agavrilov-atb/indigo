@@ -61,6 +61,8 @@ dependencies {
     cordaCompile "net.corda:corda-webserver-impl:$corda_release_version"
     cordaRuntime "net.corda:corda:$corda_release_version"
     cordaRuntime "net.corda:corda-webserver:$corda_release_version"
+    compile fileTree(dir: 'lib', include: ['indy-1.0.0.jar'])
+    compile 'net.java.dev.jna:jna:4.4.0'
 
     testCompile "net.corda:corda-node-driver:$corda_release_version"
 
