@@ -22,7 +22,7 @@ import com.beust.klaxon.string
 @CordaService
 class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
 
-    fun generateDID(): String? {
+    fun generateDID(): String {
         val USER_DID = "W4SGRU86Z58d6TV7PBUe6g"
         val TRUSTEE_DID = "V4SGRU86Z58d6TV7PBUe6f"
         val TRUSTEE_VERKEY = "GJ1SzoWzavQYfNL9XkaJdrQejfztN4XqdsiV4ct3LXKL"
@@ -99,8 +99,8 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         val parser: Parser = Parser()
         val json: JsonObject = parser.parse(StringBuilder(submitRequestResult)) as JsonObject
         println("SubmitRequestResult: " + json)
-        val savedDid = json.obj("result")?.string("dest")
-        val savedVerkey = json.obj("result")?.string("verkey")
+        val savedDid = json.obj("result")?.string("dest") ?: ""
+        val savedVerkey = json.obj("result")?.string("verkey") ?: ""
 
         if(newDid != savedDid) {
             //throw exception?

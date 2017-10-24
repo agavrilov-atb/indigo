@@ -7,6 +7,6 @@ import net.corda.core.identity.Party
 import net.corda.core.utilities.unwrap
 
 @InitiatingFlow
-class GenerateDID(val oracle: Party, val n: Int) : FlowLogic<Int>() {
-    @Suspendable override fun call() = initiateFlow(oracle).sendAndReceive<Int>(n).unwrap { it }
+class GenerateDID(val oracle: Party, val n: Int) : FlowLogic<String>() {
+    @Suspendable override fun call() = initiateFlow(oracle).sendAndReceive<String>(n).unwrap { it }
 }
