@@ -91,7 +91,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         return savedDid
     }
 
-    fun buildSchema(): String {
+    fun buildSchema(schema: String): String {
         println("=== BEGIN SCHEMA CREATION ===")
         initializeSovrin()
 
@@ -100,16 +100,8 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
-        val schemaJson = "{\n" +
-                "                    \"seqNo\":1,\n" +
-                "                    \"data\": {\n" +
-                "                        \"name\":\"gvt\",\n" +
-                "                        \"version\":\"1.0\",\n" +
-                "                        \"keys\":[\"age\",\"sex\",\"height\",\"name\"]\n" +
-                "                    }\n" +
-                "                }"
         println("=== CREATE AND STORE SCHEMA ===")
-        val claimDef = issuerCreateAndStoreClaimDef(issuerWallet, issuerDid, schemaJson, null, false).get()
+        val claimDef = issuerCreateAndStoreClaimDef(issuerWallet, issuerDid, schema, null, false).get()
 
         closeSovrin(issuerWallet, proverWallet, pool)
 
@@ -132,6 +124,21 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         closeSovrin(issuerWallet, proverWallet, pool)
     }
 
+    fun storeClaimOffer(claimOffer: String) {
+        println("=== BEGIN STORE CLAIM OFFER ===")
+        initializeSovrin()
+
+        val pool = Pool.openPoolLedger(poolName, "{}").get()
+
+        val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
+        val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
+
+        println("=== STORE CLAIM OFFER ===")
+        proverStoreClaimOffer(proverWallet, claimOffer).get()
+
+        closeSovrin(issuerWallet, proverWallet, pool)
+    }
+
     fun getSchema(): String {
         println("=== BEGIN SCHEMA CREATION ===")
         initializeSovrin()
@@ -144,11 +151,34 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== GET CLAIM SCHEMA ===")
         val claimOfferFilter = "{\"issuer_did\":\"$issuerDid\"}"
         val claimOffersJson = proverGetClaimOffers(proverWallet, claimOfferFilter).get()
+        //TODO: convert claimOffers to JSON Array
 
         closeSovrin(issuerWallet, proverWallet, pool)
 
         println("=== FINISHED SCHEMA CREATION ===")
         return claimOffersJson
+    }
+
+    fun createClaimRequest(claimOffer: String, claimDef: String, masterSecret: String): String {
+        println("=== BEGIN CREATE CLAIM REQUEST ===")
+        initializeSovrin()
+
+        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
+        val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
+
+        val claimReq: String
+        try {
+            println("=== CREATE CLAIM REQUEST ===")
+            claimReq = proverCreateAndStoreClaimReq(proverWallet, proverDid, claimOffer, claimDef, masterSecret).get()
+
+            println("=== FINISHED SCHEMA CREATION ===")
+        } catch (e: Exception) {
+            throw e
+        } finally {
+            closeSovrin(issuerWallet, proverWallet, pool)
+        }
+        return claimReq
     }
 
     private fun initializeSovrin() {
@@ -206,27 +236,6 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
     }
 }
 
-////5. Prover create Master Secret
-//val masterSecret = "masterSecretName"
-//proverCreateMasterSecret(proverWallet, masterSecret).get()
-//
-////6. Prover store Claim Offer
-//val claimOffer = String.format("{\"issuer_did\":\"%s\", \"schema_seq_no\":%d}", issuerDid, 1)
-//proverStoreClaimOffer(proverWallet, claimOffer).get()
-//
-
-//
-//val claimOffersObject = JSONArray(claimOffersJson)
-//assertEquals(claimOffersObject.length(), 1)
-//
-//val claimOfferObject = claimOffersObject.getJSONObject(0)
-//val claimOfferJson = claimOfferObject.toString()
-//
-////8. Prover create ClaimReq
-//val proverDid = "BzfFCYk"
-//val claimReq = proverCreateAndStoreClaimReq(proverWallet, proverDid, claimOfferJson, claimDef, masterSecret).get()
-//assertNotNull(claimReq)
-//
 ////9. Issuer create Claim
 //val claimAttributesJson = "{\n" +
 //        "               \"sex\":[\"male\",\"5944657099558967239210949258394887428692050081607692519917050011144233115103\"],\n" +
