@@ -30,6 +30,7 @@ import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverStoreClaimOffer
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverCreateMasterSecret
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.issuerCreateAndStoreClaimDef
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverCreateMasterSecret
+import org.hyperledger.indy.sdk.anoncreds.AnoncredsResults
 
 @CordaService
 class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
@@ -171,14 +172,101 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         try {
             println("=== CREATE CLAIM REQUEST ===")
             claimReq = proverCreateAndStoreClaimReq(proverWallet, proverDid, claimOffer, claimDef, masterSecret).get()
-
             println("=== FINISHED SCHEMA CREATION ===")
         } catch (e: Exception) {
             throw e
         } finally {
             closeSovrin(issuerWallet, proverWallet, pool)
         }
+
         return claimReq
+    }
+
+    fun issuerCreateClaim(claimReq: String, claimAttributes: String): String {
+        println("=== BEGIN ISSUER CREATE CLAIM ===")
+        initializeSovrin()
+
+        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
+        val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
+
+        val createClaimResult: AnoncredsResults.IssuerCreateClaimResult
+        try {
+            println("=== ISSUER CREATE CLAIM ===")
+            //TODO: <BUG> can't find issuer wallet by handle
+            createClaimResult = issuerCreateClaim(issuerWallet, claimReq, claimAttributes, -1).get()
+            println("=== FINISHED ISSUER CREATE CLAIM ===")
+        } catch (e: Exception) {
+            throw e
+        } finally {
+            closeSovrin(issuerWallet, proverWallet, pool)
+        }
+
+        return createClaimResult.claimJson
+    }
+
+    fun proverStoreClaim(claim: String) {
+        println("=== BEGIN PROVER STORE CLAIM ===")
+        initializeSovrin()
+
+        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
+        val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
+
+        val createClaimResult: AnoncredsResults.IssuerCreateClaimResult
+        try {
+            println("=== PROVER STORE CLAIM ===")
+            proverStoreClaim(proverWallet, claim).get()
+            println("=== FINISHED PROVER STORE CLAIM ===")
+        } catch (e: Exception) {
+            throw e
+        } finally {
+            closeSovrin(issuerWallet, proverWallet, pool)
+        }
+    }
+
+    fun claimsForProofReq(proofRequest: String): String {
+        println("=== BEGIN CLAIMS FOR PROOF REQUEST ===")
+        initializeSovrin()
+
+        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
+        val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
+
+        val claimsForProof: String
+        try {
+            println("=== CLAIMS FOR PROOF REQUEST ===")
+            claimsForProof = proverGetClaimsForProofReq(proverWallet, proofRequest).get()
+            println("=== FINISHED CLAIMS FOR PROOF REQUEST ===")
+        } catch (e: Exception) {
+            throw e
+        } finally {
+            closeSovrin(issuerWallet, proverWallet, pool)
+        }
+
+        return claimsForProof
+    }
+
+    fun proverCreateProof(proofRequest: String, requestedClaims: String, schemas: String, masterSecret: String, claimDefs: String, revocRegs: String): String {
+        println("=== BEGIN PROVER CREATE PROOF ===")
+        initializeSovrin()
+
+        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
+        val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
+
+        val proof: String
+        try {
+            println("=== PROVER CREATE PROOF ===")
+            proof = proverCreateProof(proverWallet, proofRequest, requestedClaims, schemas, masterSecret, claimDefs, revocRegs).get()
+            println("=== FINISHED PROVER CREATE PROOF ===")
+        } catch (e: Exception) {
+            throw e
+        } finally {
+            closeSovrin(issuerWallet, proverWallet, pool)
+        }
+
+        return proof
     }
 
     private fun initializeSovrin() {
@@ -235,70 +323,3 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         }
     }
 }
-
-////9. Issuer create Claim
-//val claimAttributesJson = "{\n" +
-//        "               \"sex\":[\"male\",\"5944657099558967239210949258394887428692050081607692519917050011144233115103\"],\n" +
-//        "               \"name\":[\"Alex\",\"1139481716457488690172217916278103335\"],\n" +
-//        "               \"height\":[\"175\",\"175\"],\n" +
-//        "               \"age\":[\"28\",\"28\"]\n" +
-//        "        }"
-//
-//val createClaimResult = issuerCreateClaim(issuerWallet, claimReq, claimAttributesJson, -1).get()
-//val claimJson = createClaimResult.claimJson
-//
-////10. Prover store Claim
-//proverStoreClaim(proverWallet, claimJson).get()
-//
-////11. Prover gets Claims for Proof Request
-//val proofRequestJson = "{\n" +
-//        "                          \"nonce\":\"123432421212\",\n" +
-//        "                          \"name\":\"proof_req_1\",\n" +
-//        "                          \"version\":\"0.1\",\n" +
-//        "                          \"requested_attrs\":{\"attr1_uuid\":{\"schema_seq_no\":1,\"name\":\"name\"},\n" +
-//        "                                                \"attr2_uuid\":{\"schema_seq_no\":1,\"name\":\"sex\"}},\n" +
-//        "                          \"requested_predicates\":{\"predicate1_uuid\":{\"attr_name\":\"age\",\"p_type\":\"GE\",\"value\":18}}\n" +
-//        "                  }"
-//
-//val claimsForProofJson = proverGetClaimsForProofReq(proverWallet, proofRequestJson).get()
-//
-//val claimsForProof = JSONObject(claimsForProofJson)
-//val claimsForAttribute1 = claimsForProof.getJSONObject("attrs").getJSONArray("attr1_uuid")
-//val claimsForAttribute2 = claimsForProof.getJSONObject("attrs").getJSONArray("attr1_uuid")
-//val claimsForPredicate = claimsForProof.getJSONObject("predicates").getJSONArray("predicate1_uuid")
-//
-//assertEquals(claimsForAttribute1.length(), 1)
-//assertEquals(claimsForAttribute2.length(), 1)
-//assertEquals(claimsForPredicate.length(), 1)
-//
-//val claimUuid = claimsForAttribute1.getJSONObject(0).getString("claim_uuid")
-//
-////12. Prover create Proof
-//val selfAttestedValue = "yes"
-//val requestedClaimsJson = String.format("{\n" +
-//        "                                          \"self_attested_attributes\":{\"self1\":\"%s\"},\n" +
-//        "                                          \"requested_attrs\":{\"attr1_uuid\":[\"%s\", true],\n" +
-//        "                                                               \"attr2_uuid\":[\"%s\", false]},\n" +
-//        "                                          \"requested_predicates\":{\"predicate1_uuid\":\"%s\"}\n" +
-//        "                                        }", selfAttestedValue, claimUuid, claimUuid, claimUuid)
-//
-//val schemasJson = String.format("{\"%s\":%s}", claimUuid, schemaJson)
-//val claimDefsJson = String.format("{\"%s\":%s}", claimUuid, claimDef)
-//val revocRegsJson = "{}"
-//
-//
-//val proofJson = proverCreateProof(proverWallet, proofRequestJson, requestedClaimsJson, schemasJson,
-//        masterSecret, claimDefsJson, revocRegsJson).get()
-//
-//val proof = JSONObject(proofJson)
-//
-////13. Verifier verify Proof
-//assertEquals("Alex",
-//proof.getJSONObject("requested_proof").getJSONObject("revealed_attrs").getJSONArray("attr1_uuid").getString(1))
-//
-//assertNotNull(proof.getJSONObject("requested_proof").getJSONObject("unrevealed_attrs").getString("attr2_uuid"))
-//
-//assertEquals(selfAttestedValue, proof.getJSONObject("requested_proof").getJSONObject("self_attested_attrs").getString("self1"))
-//
-//val valid = verifierVerifyProof(proofRequestJson, proofJson, schemasJson, claimDefsJson, revocRegsJson).get()
-//assertTrue(valid)
