@@ -29,19 +29,20 @@ import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverGetClaimOffers
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverStoreClaimOffer
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverCreateMasterSecret
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.issuerCreateAndStoreClaimDef
-
+import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverCreateMasterSecret
 
 @CordaService
 class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
     private val poolName = "localhost"
     private val issuerWalletName = "issuerWallet"
-    private val proverWalletName = "trusteeWallet"
+    private val proverWalletName = "proverWallet"
     private val txn = "/Users/austinmoothart/dev/project-indigo/oracle-service/lib/localhost.txn"
 
     private val issuerDid = "W4SGRU86Z58d6TV7PBUe6g"
-    private val trusteeDid = "V4SGRU86Z58d6TV7PBUe6f"
-    private val trusteeVerkey = "GJ1SzoWzavQYfNL9XkaJdrQejfztN4XqdsiV4ct3LXKL"
-    private val trusteeSeed = "000000000000000000000000Trustee1"
+    private val proverDid = "V4SGRU86Z58d6TV7PBUe6f"
+    private val proverVerkey = "GJ1SzoWzavQYfNL9XkaJdrQejfztN4XqdsiV4ct3LXKL"
+    private val proverSeed = "000000000000000000000000Trustee1"
+
 
     fun generateDID(): String {
         println("=== BEGIN DID GENERATION ===")
@@ -52,23 +53,23 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("OpenPoolLedgerJSONParameter: " + openPoolLedgerJSONParameter)
         val pool = Pool.openPoolLedger(poolName, openPoolLedgerJSONParameter.toJson()).get()
 
-        println("=== OPEN TRUSTEE WALLET ===")
-        var trusteeWallet = Wallet.openWallet(proverWalletName, null, null).get()
+        println("=== OPEN PROVER WALLET ===")
+        var proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
 
-        println("=== CREATE TRUSTEE DID ===")
-        val createAndStoreMyDidJSONParameterTrustee = SignusJSONParameters.CreateAndStoreMyDidJSONParameter(null, trusteeSeed, null, null)
+        println("=== CREATE PROVER DID ===")
+        val createAndStoreMyDidJSONParameterTrustee = SignusJSONParameters.CreateAndStoreMyDidJSONParameter(null, proverSeed, null, null)
         println("CreateAndStoreMyDidJSONParameterTrustee: " + createAndStoreMyDidJSONParameterTrustee)
-        val createAndStoreMyDidResultTrustee = Signus.createAndStoreMyDid(trusteeWallet, createAndStoreMyDidJSONParameterTrustee.toJson()).get()
+        val createAndStoreMyDidResultTrustee = Signus.createAndStoreMyDid(proverWallet, createAndStoreMyDidJSONParameterTrustee.toJson()).get()
         val newDid = createAndStoreMyDidResultTrustee.did
         val newVerkey = createAndStoreMyDidResultTrustee.verkey
 
         println("=== CREATE NYM REQUEST ===")
-        val buildNymRequestResult = Ledger.buildNymRequest(trusteeDid, this.issuerDid, trusteeVerkey, null, null).get()
+        val buildNymRequestResult = Ledger.buildNymRequest(proverDid, this.issuerDid, proverVerkey, null, null).get()
         println("BuildNymRequestResult: " + buildNymRequestResult)
 
         println("=== SUBMIT ===")
-        val submitRequestResult = Ledger.signAndSubmitRequest(pool, trusteeWallet, trusteeDid, buildNymRequestResult).get()
+        val submitRequestResult = Ledger.signAndSubmitRequest(pool, proverWallet, proverDid, buildNymRequestResult).get()
         println("SubmitRequestResult: " + submitRequestResult)
         val parser: Parser = Parser()
         val json: JsonObject = parser.parse(StringBuilder(submitRequestResult)) as JsonObject
@@ -84,7 +85,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
             //throw exception?
         }
 
-        closeSovrin(issuerWallet, trusteeWallet, pool)
+        closeSovrin(issuerWallet, proverWallet, pool)
 
         println("=== FINISHED DID GENERATION ===")
         return savedDid
@@ -94,16 +95,11 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== BEGIN SCHEMA CREATION ===")
         initializeSovrin()
 
-        //1. Create and Open Pool
         val pool = Pool.openPoolLedger(poolName, "{}").get()
 
-        //2. Issuer Create and Open Wallet
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
-
-        //3. Prover Create and Open Wallet
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
-        //4. Issuer create ClaimDef
         val schemaJson = "{\n" +
                 "                    \"seqNo\":1,\n" +
                 "                    \"data\": {\n" +
@@ -115,8 +111,44 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== CREATE AND STORE SCHEMA ===")
         val claimDef = issuerCreateAndStoreClaimDef(issuerWallet, issuerDid, schemaJson, null, false).get()
 
+        closeSovrin(issuerWallet, proverWallet, pool)
+
         println("=== FINISHED SCHEMA CREATION ===")
         return claimDef
+    }
+
+    fun establishMasterSecret(masterSecret: String) {
+        println("=== BEGIN SCHEMA CREATION ===")
+        initializeSovrin()
+
+        val pool = Pool.openPoolLedger(poolName, "{}").get()
+
+        val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
+        val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
+
+        println("=== ESTABLISH MASTER SECRET ===")
+        proverCreateMasterSecret(proverWallet, masterSecret).get()
+
+        closeSovrin(issuerWallet, proverWallet, pool)
+    }
+
+    fun getSchema(): String {
+        println("=== BEGIN SCHEMA CREATION ===")
+        initializeSovrin()
+
+        val pool = Pool.openPoolLedger(poolName, "{}").get()
+
+        val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
+        val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
+
+        println("=== GET CLAIM SCHEMA ===")
+        val claimOfferFilter = "{\"issuer_did\":\"$issuerDid\"}"
+        val claimOffersJson = proverGetClaimOffers(proverWallet, claimOfferFilter).get()
+
+        closeSovrin(issuerWallet, proverWallet, pool)
+
+        println("=== FINISHED SCHEMA CREATION ===")
+        return claimOffersJson
     }
 
     private fun initializeSovrin() {
@@ -182,9 +214,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
 //val claimOffer = String.format("{\"issuer_did\":\"%s\", \"schema_seq_no\":%d}", issuerDid, 1)
 //proverStoreClaimOffer(proverWallet, claimOffer).get()
 //
-////7. Prover get Claim Offers
-//val claimOfferFilter = String.format("{\"issuer_did\":\"%s\"}", issuerDid)
-//val claimOffersJson = proverGetClaimOffers(proverWallet, claimOfferFilter).get()
+
 //
 //val claimOffersObject = JSONArray(claimOffersJson)
 //assertEquals(claimOffersObject.length(), 1)
