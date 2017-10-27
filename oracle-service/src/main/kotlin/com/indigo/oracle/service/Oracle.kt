@@ -17,10 +17,7 @@ import org.hyperledger.indy.sdk.pool.PoolJSONParameters.CreatePoolLedgerConfigJS
 import com.beust.klaxon.Parser
 import com.beust.klaxon.obj
 import com.beust.klaxon.string
-import org.hyperledger.indy.sdk.anoncreds.Anoncreds.verifierVerifyProof
-import org.json.simple.JSONObject
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverCreateProof
-import org.json.simple.JSONArray
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverGetClaimsForProofReq
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverStoreClaim
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.issuerCreateClaim
@@ -29,11 +26,12 @@ import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverGetClaimOffers
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverStoreClaimOffer
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverCreateMasterSecret
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.issuerCreateAndStoreClaimDef
-import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverCreateMasterSecret
 import org.hyperledger.indy.sdk.anoncreds.AnoncredsResults
 
 @CordaService
 class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
+    val parser = Parser()
+
     private val poolName = "localhost"
     private val issuerWalletName = "issuerWallet"
     private val proverWalletName = "proverWallet"
@@ -72,7 +70,6 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== SUBMIT ===")
         val submitRequestResult = Ledger.signAndSubmitRequest(pool, proverWallet, proverDid, buildNymRequestResult).get()
         println("SubmitRequestResult: " + submitRequestResult)
-        val parser: Parser = Parser()
         val json: JsonObject = parser.parse(StringBuilder(submitRequestResult)) as JsonObject
         println("SubmitRequestResult: " + json)
         val savedDid = json.obj("result")?.string("dest") ?: ""
@@ -284,11 +281,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
     private fun closeSovrin(issuerWallet: Wallet, proverWallet: Wallet, pool: Pool) {
         println("=== CLOSE SOVRIN CONNECTION ===")
         issuerWallet.closeWallet().get()
-        Wallet.deleteWallet(issuerWalletName, null).get()
-
         proverWallet.closeWallet().get()
-        Wallet.deleteWallet(proverWalletName, null).get()
-
         pool.closePoolLedger().get()
     }
 
