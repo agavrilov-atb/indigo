@@ -10,13 +10,13 @@ const val DID_PROGRAM_ID: ContractClassName = "com.indigo.contract.DIDContract"
 class DIDContract : Contract {
 
     interface Commands : CommandData {
-        class Generate : TypeOnlyCommandData(), Commands
+        class GenerateDID(sovrinDID: String) : TypeOnlyCommandData(), Commands
     }
 
     override fun verify(tx: LedgerTransaction) {
         "There are no inputs" using (tx.inputs.isEmpty())
 //        val output = tx.outputsOfType<DIDState>().single() do we need to track DID state?
-        val command = tx.commands.requireSingleCommand<Commands.Generate>().value
+        val command = tx.commands.requireSingleCommand<Commands.GenerateDID>().value
         "There should only be 1 output" using (tx.outputs.size == 1)
     }
 

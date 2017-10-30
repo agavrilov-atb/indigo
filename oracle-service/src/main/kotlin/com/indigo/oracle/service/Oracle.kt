@@ -17,6 +17,10 @@ import org.hyperledger.indy.sdk.pool.PoolJSONParameters.CreatePoolLedgerConfigJS
 import com.beust.klaxon.Parser
 import com.beust.klaxon.obj
 import com.beust.klaxon.string
+import com.indigo.contract.DIDContract
+import net.corda.core.contracts.Command
+import net.corda.core.crypto.TransactionSignature
+import net.corda.core.transactions.FilteredTransaction
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverCreateProof
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverGetClaimsForProofReq
 import org.hyperledger.indy.sdk.anoncreds.Anoncreds.proverStoreClaim
@@ -30,6 +34,7 @@ import org.hyperledger.indy.sdk.anoncreds.AnoncredsResults
 
 @CordaService
 class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
+    private val myKey = services.myInfo.legalIdentities.first().owningKey
     val parser = Parser()
 
     private val poolName = "localhost"
@@ -301,6 +306,38 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         }
 
         return parser.parse(StringBuilder(proof)) as JsonObject
+    }
+
+    // Signs over a transaction if the specified Nth prime for a particular N is correct.
+    // This function takes a filtered transaction which is a partial Merkle tree. Any parts of the transaction which
+    // the oracle doesn't need to see in order to verify the correctness of the nth prime have been removed. In this
+    // case, all but the [PrimeContract.Create] commands have been removed. If the Nth prime is correct then the oracle
+    // signs over the Merkle root (the hash) of the transaction.
+    fun sign(ftx: FilteredTransaction): TransactionSignature {
+        // Check the partial Merkle tree is valid.
+        ftx.verify()
+
+        /** Returns true if the component is an Create command that:
+         *  - States the correct prime
+         *  - Has the oracle listed as a signer
+         */
+        fun isCommandWithCorrectPrimeAndIAmSigner(elem: Any) = when {
+            elem is Command<*> && elem.value is DIDContract.Commands.GenerateDID -> {
+//                val cmdData = elem.value as DIDContract.Create
+//                myKey in elem.signers && query(cmdData.n) == cmdData.nthPrime
+                true //TODO: how to verify and sign?
+            }
+            else -> false
+        }
+
+        // Is it a Merkle tree we are willing to sign over?
+        val isValidMerkleTree = ftx.checkWithFun(::isCommandWithCorrectPrimeAndIAmSigner)
+
+        if (isValidMerkleTree) {
+            return services.createSignature(ftx, myKey)
+        } else {
+            throw IllegalArgumentException("Oracle signature requested over invalid transaction.")
+        }
     }
 
     private fun initializeSovrin() {
