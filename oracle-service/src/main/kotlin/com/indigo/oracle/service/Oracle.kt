@@ -98,10 +98,20 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
+        var claimDef = ""
         println("=== CREATE AND STORE SCHEMA ===")
-        val claimDef = issuerCreateAndStoreClaimDef(issuerWallet, issuerDid, schema, null, false).get()
-
-        closeSovrin(issuerWallet, proverWallet, pool)
+        try {
+            claimDef = issuerCreateAndStoreClaimDef(issuerWallet, issuerDid, schema, null, false).get()
+        } catch (e: Exception) {
+            if(e.cause!!::class.java.equals(IndyException::class.java)
+                    && (e.cause as IndyException).errorCode.toString() == "AnoncredsMasterSecretDuplicateNameError") {
+                println("MasterSecret already exists, continuing")
+            } else {
+                throw e
+            }
+        } finally {
+            closeSovrin(issuerWallet, proverWallet, pool)
+        }
 
         println("=== FINISHED SCHEMA CREATION ===")
         return claimDef
@@ -117,9 +127,18 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
         println("=== ESTABLISH MASTER SECRET ===")
-        proverCreateMasterSecret(proverWallet, masterSecret).get()
-
-        closeSovrin(issuerWallet, proverWallet, pool)
+        try {
+            proverCreateMasterSecret(proverWallet, masterSecret).get()
+        } catch (e: Exception) {
+            if(e.cause!!::class.java.equals(IndyException::class.java)
+                    && (e.cause as IndyException).errorCode.toString() == "AnoncredsMasterSecretDuplicateNameError") {
+                println("MasterSecret already exists, continuing")
+            } else {
+                throw e
+            }
+        } finally {
+            closeSovrin(issuerWallet, proverWallet, pool)
+        }
     }
 
     fun storeClaimOffer(claimOffer: String) {
@@ -132,9 +151,18 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
         println("=== STORE CLAIM OFFER ===")
-        proverStoreClaimOffer(proverWallet, claimOffer).get()
-
-        closeSovrin(issuerWallet, proverWallet, pool)
+        try {
+            proverStoreClaimOffer(proverWallet, claimOffer).get()
+        } catch (e: Exception) {
+            if(e.cause!!::class.java.equals(IndyException::class.java)
+                    && (e.cause as IndyException).errorCode.toString() == "AnoncredsMasterSecretDuplicateNameError") {
+                println("MasterSecret already exists, continuing")
+            } else {
+                throw e
+            }
+        } finally {
+            closeSovrin(issuerWallet, proverWallet, pool)
+        }
     }
 
     fun getSchema(): String {
@@ -146,12 +174,22 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
+        var claimOffersJson = ""
         println("=== GET CLAIM SCHEMA ===")
         val claimOfferFilter = "{\"issuer_did\":\"$issuerDid\"}"
-        val claimOffersJson = proverGetClaimOffers(proverWallet, claimOfferFilter).get()
-        //TODO: convert claimOffers to JSON Array
-
-        closeSovrin(issuerWallet, proverWallet, pool)
+        try {
+            claimOffersJson = proverGetClaimOffers(proverWallet, claimOfferFilter).get()
+            //TODO: convert claimOffers to JSON Array
+        } catch (e: Exception) {
+            if(e.cause!!::class.java.equals(IndyException::class.java)
+                    && (e.cause as IndyException).errorCode.toString() == "AnoncredsMasterSecretDuplicateNameError") {
+                println("MasterSecret already exists, continuing")
+            } else {
+                throw e
+            }
+        } finally {
+            closeSovrin(issuerWallet, proverWallet, pool)
+        }
 
         println("=== FINISHED SCHEMA CREATION ===")
         return claimOffersJson
@@ -166,8 +204,8 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
         val claimReq: String
+        println("=== CREATE CLAIM REQUEST ===")
         try {
-            println("=== CREATE CLAIM REQUEST ===")
             claimReq = proverCreateAndStoreClaimReq(proverWallet, proverDid, claimOffer, claimDef, masterSecret).get()
             println("=== FINISHED SCHEMA CREATION ===")
         } catch (e: Exception) {
@@ -190,7 +228,6 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         val createClaimResult: AnoncredsResults.IssuerCreateClaimResult
         try {
             println("=== ISSUER CREATE CLAIM ===")
-            //TODO: <BUG> can't find issuer wallet by handle
             createClaimResult = issuerCreateClaim(issuerWallet, claimReq, claimAttributes, -1).get()
             println("=== FINISHED ISSUER CREATE CLAIM ===")
         } catch (e: Exception) {
@@ -222,7 +259,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         }
     }
 
-    fun claimsForProofReq(proofRequest: String): String {
+    fun claimsForProofReq(proofRequest: String): JsonObject {
         println("=== BEGIN CLAIMS FOR PROOF REQUEST ===")
         initializeSovrin()
 
@@ -241,10 +278,10 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
             closeSovrin(issuerWallet, proverWallet, pool)
         }
 
-        return claimsForProof
+        return parser.parse(StringBuilder(claimsForProof)) as JsonObject
     }
 
-    fun proverCreateProof(proofRequest: String, requestedClaims: String, schemas: String, masterSecret: String, claimDefs: String, revocRegs: String): String {
+    fun proverCreateProof(proofRequest: String, requestedClaims: String, schemas: String, masterSecret: String, claimDefs: String, revocRegs: String): JsonObject {
         println("=== BEGIN PROVER CREATE PROOF ===")
         initializeSovrin()
 
@@ -263,7 +300,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
             closeSovrin(issuerWallet, proverWallet, pool)
         }
 
-        return proof
+        return parser.parse(StringBuilder(proof)) as JsonObject
     }
 
     private fun initializeSovrin() {
