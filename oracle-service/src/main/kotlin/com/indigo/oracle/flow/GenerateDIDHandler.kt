@@ -15,7 +15,7 @@ class GenerateDIDHandler(val session: FlowSession) : FlowLogic<Unit?>() {
     override fun call(): Unit? {
         try {
             val response = this.serviceHub.cordaService(Oracle::class.java).generateDID()
-            return session?.send(response)
+            return session.send(response)
         } catch (e: Exception) {
             throw FlowException(e)
         }

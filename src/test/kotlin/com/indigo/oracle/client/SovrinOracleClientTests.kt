@@ -47,6 +47,7 @@ class SovrinOracleClientTests {
         val flow = a.services.startFlow(SovrinFlow())
         mockNet.runNetwork()
         val result = flow.resultFuture.getOrThrow().tx.outputsOfType<DIDState>().single()
+        //TODO: test more than the simple completion of the demo flow
         assertNotNull(result)
     }
 

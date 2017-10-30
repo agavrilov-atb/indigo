@@ -4,6 +4,7 @@ import co.paralleluniverse.fibers.Suspendable
 import com.indigo.contract.DIDContract
 import com.indigo.contract.DIDState
 import com.indigo.contract.DID_PROGRAM_ID
+import com.indigo.contract.IOUContract
 import net.corda.core.contracts.Command
 import net.corda.core.flows.FinalityFlow
 import net.corda.core.flows.FlowLogic
@@ -21,6 +22,7 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
     companion object {
         object SET_UP : ProgressTracker.Step("Initialising flow.")
         object GENERATING_DID : ProgressTracker.Step("Requesting a new DID from the Oracle.")
+        object CREATING_SCHEMA : ProgressTracker.Step("Creating a new Sovrin data schema.")
         object BUILDING_THE_TX : ProgressTracker.Step("Building transaction.")
         object VERIFYING_THE_TX : ProgressTracker.Step("Verifying transaction.")
         object WE_SIGN : ProgressTracker.Step("signing transaction.")
@@ -29,8 +31,14 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
             override fun childProgressTracker() = FinalityFlow.tracker()
         }
 
-        fun tracker() = ProgressTracker(SET_UP, GENERATING_DID, BUILDING_THE_TX,
-                VERIFYING_THE_TX, WE_SIGN, ORACLE_SIGNS, FINALISING)
+        fun tracker() = ProgressTracker(SET_UP,
+                GENERATING_DID,
+                CREATING_SCHEMA,
+                BUILDING_THE_TX,
+                VERIFYING_THE_TX,
+                WE_SIGN,
+                ORACLE_SIGNS,
+                FINALISING)
     }
 
     override val progressTracker = tracker()
@@ -45,7 +53,10 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
                 ?: throw IllegalArgumentException("Requested oracle $oracleName not found on network.")
 
         progressTracker.currentStep = GENERATING_DID
-        val sovrinDIDFromOracle = subFlow(GenerateDID(oracle, 100))
+        val sovrinDIDFromOracle = subFlow(GenerateDID(oracle))
+
+        progressTracker.currentStep = CREATING_SCHEMA
+        val newSchema = subFlow(CreateSchema(oracle))
 
         progressTracker.currentStep = BUILDING_THE_TX
         val didState = DIDState(sovrinDIDFromOracle, ourIdentity)
