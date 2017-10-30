@@ -7,6 +7,6 @@ import net.corda.core.identity.Party
 import net.corda.core.utilities.unwrap
 
 @InitiatingFlow
-class CreateSchema(val oracle: Party, val schema: String) : FlowLogic<String>() {
-    @Suspendable override fun call() = initiateFlow(oracle).sendAndReceive<String>(schema).unwrap { it }
+class EstablishMasterSecret(val oracle: Party, val masterSecret: String) : FlowLogic<Unit>() {
+    @Suspendable override fun call() = initiateFlow(oracle).sendAndReceive<Unit>(masterSecret).unwrap { it }
 }

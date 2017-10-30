@@ -23,6 +23,7 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
         object SET_UP : ProgressTracker.Step("Initialising flow.")
         object GENERATING_DID : ProgressTracker.Step("Requesting a new DID from the Oracle.")
         object CREATING_SCHEMA : ProgressTracker.Step("Creating a new Sovrin data schema.")
+        object ESTABLISHING_MASTER_SECRET : ProgressTracker.Step("Establishing a master secret.")
         object BUILDING_THE_TX : ProgressTracker.Step("Building transaction.")
         object VERIFYING_THE_TX : ProgressTracker.Step("Verifying transaction.")
         object WE_SIGN : ProgressTracker.Step("signing transaction.")
@@ -34,6 +35,7 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
         fun tracker() = ProgressTracker(SET_UP,
                 GENERATING_DID,
                 CREATING_SCHEMA,
+                ESTABLISHING_MASTER_SECRET,
                 BUILDING_THE_TX,
                 VERIFYING_THE_TX,
                 WE_SIGN,
@@ -56,7 +58,11 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
         val sovrinDIDFromOracle = subFlow(GenerateDID(oracle))
 
         progressTracker.currentStep = CREATING_SCHEMA
-        val newSchema = subFlow(CreateSchema(oracle))
+        val schema = "{\"seqNo\":1,\"data\": {\"name\":\"gvt\",\"version\":\"1.0\",\"keys\":[\"age\",\"sex\",\"height\",\"name\"]}}"
+        val newSchema = subFlow(CreateSchema(oracle, schema))
+
+        progressTracker.currentStep = ESTABLISHING_MASTER_SECRET
+        subFlow(EstablishMasterSecret(oracle, "mastersecret"))
 
         progressTracker.currentStep = BUILDING_THE_TX
         val didState = DIDState(sovrinDIDFromOracle, ourIdentity)
