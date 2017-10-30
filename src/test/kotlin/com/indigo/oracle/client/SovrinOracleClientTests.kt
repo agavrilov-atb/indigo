@@ -2,10 +2,7 @@ package net.corda.examples.oracle.client
 
 import com.indigo.contract.DIDState
 import com.indigo.flow.SovrinFlow
-import com.indigo.oracle.flow.CreateSchemaHandler
-import com.indigo.oracle.flow.EstablishMasterSecretHandler
-import com.indigo.oracle.flow.GenerateDIDHandler
-import com.indigo.oracle.flow.SignSovrinHandler
+import com.indigo.oracle.flow.*
 import net.corda.core.identity.CordaX500Name
 import net.corda.core.utilities.getOrThrow
 import net.corda.node.internal.StartedNode
@@ -32,6 +29,8 @@ class SovrinOracleClientTests {
         listOf(GenerateDIDHandler::class.java,
                 CreateSchemaHandler::class.java,
                 EstablishMasterSecretHandler::class.java,
+                StoreClaimOfferHandler::class.java,
+                GetClaimOffersHandler::class.java,
                 SignSovrinHandler::class.java).forEach { oracle.registerInitiatedFlow(it) }
         oracle.internals.installCordaService(com.indigo.oracle.service.Oracle::class.java)
 

@@ -4,7 +4,6 @@ import co.paralleluniverse.fibers.Suspendable
 import com.indigo.contract.DIDContract
 import com.indigo.contract.DIDState
 import com.indigo.contract.DID_PROGRAM_ID
-import com.indigo.contract.IOUContract
 import net.corda.core.contracts.Command
 import net.corda.core.flows.FinalityFlow
 import net.corda.core.flows.FlowLogic
@@ -24,6 +23,8 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
         object GENERATING_DID : ProgressTracker.Step("Requesting a new DID from the Oracle.")
         object CREATING_SCHEMA : ProgressTracker.Step("Creating a new Sovrin data schema.")
         object ESTABLISHING_MASTER_SECRET : ProgressTracker.Step("Establishing a master secret.")
+        object STORING_CLAIM_OFFER : ProgressTracker.Step("Storing a claim offer.")
+        object GETTING_DATA_SCHEMA : ProgressTracker.Step("Getting a data schema.")
         object BUILDING_THE_TX : ProgressTracker.Step("Building transaction.")
         object VERIFYING_THE_TX : ProgressTracker.Step("Verifying transaction.")
         object WE_SIGN : ProgressTracker.Step("signing transaction.")
@@ -36,6 +37,8 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
                 GENERATING_DID,
                 CREATING_SCHEMA,
                 ESTABLISHING_MASTER_SECRET,
+                STORING_CLAIM_OFFER,
+                GETTING_DATA_SCHEMA,
                 BUILDING_THE_TX,
                 VERIFYING_THE_TX,
                 WE_SIGN,
@@ -63,6 +66,15 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
 
         progressTracker.currentStep = ESTABLISHING_MASTER_SECRET
         subFlow(EstablishMasterSecret(oracle, "mastersecret"))
+
+        progressTracker.currentStep = STORING_CLAIM_OFFER
+        val issuerDid = "W4SGRU86Z58d6TV7PBUe6g" //part of agent code, DID of trust anchor
+        val claimOffer = "{\"issuer_did\":\"$issuerDid\", \"schema_seq_no\":1}"
+        subFlow(StoreClaimOffer(oracle, claimOffer))
+
+        progressTracker.currentStep = GETTING_DATA_SCHEMA
+        val claimOfferFilter = "{\"issuer_did\":\"$issuerDid\"}"
+        val retrievedSchema = subFlow(GetClaimOffers(oracle, claimOfferFilter))
 
         progressTracker.currentStep = BUILDING_THE_TX
         val didState = DIDState(sovrinDIDFromOracle, ourIdentity)

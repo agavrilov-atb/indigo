@@ -170,7 +170,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         }
     }
 
-    fun getSchema(): String {
+    fun getClaimOffers(claimOfferFilter: String): String {
         println("=== BEGIN SCHEMA CREATION ===")
         initializeSovrin()
 
@@ -179,22 +179,11 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
-        var claimOffersJson = ""
         println("=== GET CLAIM SCHEMA ===")
-        val claimOfferFilter = "{\"issuer_did\":\"$issuerDid\"}"
-        try {
-            claimOffersJson = proverGetClaimOffers(proverWallet, claimOfferFilter).get()
-            //TODO: convert claimOffers to JSON Array
-        } catch (e: Exception) {
-            if(e.cause!!::class.java.equals(IndyException::class.java)
-                    && (e.cause as IndyException).errorCode.toString() == "AnoncredsMasterSecretDuplicateNameError") {
-                println("MasterSecret already exists, continuing")
-            } else {
-                throw e
-            }
-        } finally {
-            closeSovrin(issuerWallet, proverWallet, pool)
-        }
+        val claimOffersJson = proverGetClaimOffers(proverWallet, claimOfferFilter).get()
+        //TODO: convert claimOffers to JSON Array
+
+        closeSovrin(issuerWallet, proverWallet, pool)
 
         println("=== FINISHED SCHEMA CREATION ===")
         return claimOffersJson
