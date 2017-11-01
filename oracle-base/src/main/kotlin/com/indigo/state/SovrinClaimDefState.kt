@@ -48,7 +48,7 @@ object SovrinClaimDefSchemaV1 : MappedSchema(
         version = 1,
         mappedTypes = listOf(PersistentSovrinClaimDefState::class.java)) {
     @Entity
-    @Table(name = "sovrin_cliam_def_state")
+    @Table(name = "sovrin_claim_def_state")
     class PersistentSovrinClaimDefState(
 
             @Column(name = "name")

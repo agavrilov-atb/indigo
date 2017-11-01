@@ -13,7 +13,8 @@ import javax.persistence.Table
 /**
  * Created by nxshah5 on 10/31/17.
  */
-data class SovrinTrustState(val party: Party, val partyDID:String, val otherPartyName:String, val otherPartyDID:String, val pairwiseDID:String) : QueryableState{
+data class SovrinTrustState(val party: Party, val partyDID:String, val otherPartyName:String, val otherPartyDID:String, val pairwiseDID:String)
+    : QueryableState{
 
     override fun generateMappedObject(schema: MappedSchema): PersistentState {
         return when(schema){
