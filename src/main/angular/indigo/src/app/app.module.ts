@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { CustomOption } from './shared/custom-toaster';
 import { ToastOptions } from 'ng2-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -48,10 +49,12 @@ import {
   MatStepperModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
+import { NetworkMapComponent } from './components/network-map/network-map.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LeftNavBarComponent
+    LeftNavBarComponent,
+    NetworkMapComponent
   ],
   imports: [
     ToastModule.forRoot(),
@@ -93,7 +96,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatFormFieldModule,
     MatStepperModule,
     BrowserAnimationsModule,
-    CdkTableModule
+    CdkTableModule,
+    AppRoutingModule
     
   ],
   providers: [IndigoService, {provide: ToastOptions, useClass: CustomOption}],

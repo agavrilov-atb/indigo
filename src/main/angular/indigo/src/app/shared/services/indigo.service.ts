@@ -1,5 +1,5 @@
+import { me, Peer } from './../models/corda-network';
 import { Constants } from './../../config';
-import { me } from './../models/me';
 import { Utils } from './../../utils';
 import {Injectable, EventEmitter} from '@angular/core';
 import {Http, Response, RequestOptions, RequestMethod, Request, Headers} from '@angular/http';
@@ -27,6 +27,16 @@ export class IndigoService {
                });
   }
 
+  fetchPeers():Promise<Peer[]> {
+    const req = Utils.getHttpRequest(this.baseUrl + '/api/com.indigo/AllPeers');
+    return this.http.request(req)
+                .toPromise()
+                .then( res=> res.json() as Peer[])
+                .catch((error: Response) => {
+                 return Utils.handleError(error);
+
+               });
+  }
  
 
 }

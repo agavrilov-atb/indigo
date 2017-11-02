@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Peers</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+        
+            <th>Sovrin DID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let peer of peers">
+        
+          <td>{{peer.x500Name}}</td>
+          <td>{{peer.sovrinDID}}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  

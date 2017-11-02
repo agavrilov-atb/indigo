@@ -1,6 +1,7 @@
+import { me } from './../shared/models/corda-network';
+import { AbstractComponent } from './../shared/abstract-component';
 import { Utils } from './../utils';
 import { IndigoService } from './../shared/services/indigo.service';
-import { me } from './../shared/models/me';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { ToastsManager } from 'ng2-toastr';
@@ -10,7 +11,7 @@ import { ToastsManager } from 'ng2-toastr';
   templateUrl: './left-nav-bar.component.html',
   styleUrls: ['./left-nav-bar.component.css']
 })
-export class LeftNavBarComponent implements OnInit {
+export class LeftNavBarComponent extends AbstractComponent implements OnInit {
 
   public me: me;
   get meShort(): string {
@@ -18,9 +19,10 @@ export class LeftNavBarComponent implements OnInit {
       return Utils.getShortName(this.me.me);
     }
   }
-  constructor(private indigoService: IndigoService,
-    public toastr: ToastsManager, vcr: ViewContainerRef) {
-      this.toastr.setRootViewContainerRef(vcr);
+  constructor(private indigoService: IndigoService,public toastr: ToastsManager, vcr: ViewContainerRef
+    ) {
+    super(toastr,vcr);
+      
   }
   ngOnInit() {
     this.indigoService.fetchMe().then(me => {
