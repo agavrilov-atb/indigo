@@ -34,13 +34,24 @@ import org.hyperledger.indy.sdk.anoncreds.AnoncredsResults
 
 @CordaService
 class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
+    private var poolname = ""
+    private var txn = ""
+    init {
+        val local = true
+        if(local) {
+            poolname = "localhost"
+            txn = "/Users/austinmoothart/dev/project-indigo/oracle-service/lib/localhost.txn"
+        } else {
+            poolname = "stn"
+            txn = "/Users/austinmoothart/dev/project-indigo/oracle-service/lib/stn.txn"
+        }
+    }
+
     private val myKey = services.myInfo.legalIdentities.first().owningKey
     val parser = Parser()
 
-    private val poolName = "localhost"
     private val issuerWalletName = "issuerWallet"
     private val proverWalletName = "proverWallet"
-    private val txn = "/Users/austinmoothart/dev/project-indigo/oracle-service/lib/localhost.txn"
 
     private val issuerDid = "W4SGRU86Z58d6TV7PBUe6g"
     private val proverDid = "V4SGRU86Z58d6TV7PBUe6f"
@@ -55,40 +66,45 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== OPEN POOL ===")
         val openPoolLedgerJSONParameter = OpenPoolLedgerJSONParameter(java.lang.Boolean.TRUE, null, null)
         println("OpenPoolLedgerJSONParameter: " + openPoolLedgerJSONParameter)
-        val pool = Pool.openPoolLedger(poolName, openPoolLedgerJSONParameter.toJson()).get()
+        val pool = openPoolLedger(openPoolLedgerJSONParameter.toJson())
 
         println("=== OPEN PROVER WALLET ===")
         var proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
 
-        println("=== CREATE PROVER DID ===")
-        val createAndStoreMyDidJSONParameterTrustee = SignusJSONParameters.CreateAndStoreMyDidJSONParameter(null, proverSeed, null, null)
-        println("CreateAndStoreMyDidJSONParameterTrustee: " + createAndStoreMyDidJSONParameterTrustee)
-        val createAndStoreMyDidResultTrustee = Signus.createAndStoreMyDid(proverWallet, createAndStoreMyDidJSONParameterTrustee.toJson()).get()
-        val newDid = createAndStoreMyDidResultTrustee.did
-        val newVerkey = createAndStoreMyDidResultTrustee.verkey
+        var savedDid = ""
+        try {
+            println("=== CREATE PROVER DID ===")
+            val createAndStoreMyDidJSONParameterTrustee = SignusJSONParameters.CreateAndStoreMyDidJSONParameter(null, proverSeed, null, null)
+            println("CreateAndStoreMyDidJSONParameterTrustee: " + createAndStoreMyDidJSONParameterTrustee)
+            val createAndStoreMyDidResultTrustee = Signus.createAndStoreMyDid(proverWallet, createAndStoreMyDidJSONParameterTrustee.toJson()).get()
+            val newDid = createAndStoreMyDidResultTrustee.did
+            val newVerkey = createAndStoreMyDidResultTrustee.verkey
 
-        println("=== CREATE NYM REQUEST ===")
-        val buildNymRequestResult = Ledger.buildNymRequest(proverDid, this.issuerDid, proverVerkey, null, null).get()
-        println("BuildNymRequestResult: " + buildNymRequestResult)
+            println("=== CREATE NYM REQUEST ===")
+            val buildNymRequestResult = Ledger.buildNymRequest(proverDid, this.issuerDid, proverVerkey, null, null).get()
+            println("BuildNymRequestResult: " + buildNymRequestResult)
 
-        println("=== SUBMIT ===")
-        val submitRequestResult = Ledger.signAndSubmitRequest(pool, proverWallet, proverDid, buildNymRequestResult).get()
-        println("SubmitRequestResult: " + submitRequestResult)
-        val json: JsonObject = parser.parse(StringBuilder(submitRequestResult)) as JsonObject
-        println("SubmitRequestResult: " + json)
-        val savedDid = json.obj("result")?.string("dest") ?: ""
-        val savedVerkey = json.obj("result")?.string("verkey") ?: ""
+            println("=== SUBMIT ===")
+            val submitRequestResult = Ledger.signAndSubmitRequest(pool, proverWallet, proverDid, buildNymRequestResult).get()
+            println("SubmitRequestResult: " + submitRequestResult)
+            val json: JsonObject = parser.parse(StringBuilder(submitRequestResult)) as JsonObject
+            println("SubmitRequestResult: " + json)
+            savedDid = json.obj("result")?.string("dest") ?: ""
+            val savedVerkey = json.obj("result")?.string("verkey") ?: ""
 
-        if(newDid != savedDid) {
-            //throw exception?
+            if (newDid != savedDid) {
+                //throw exception?
+            }
+
+            if (newVerkey != savedVerkey) {
+                //throw exception?
+            }
+        } catch (e: Exception) {
+            throw e
+        } finally {
+            closeSovrin(issuerWallet, proverWallet, pool)
         }
-
-        if(newVerkey != savedVerkey) {
-            //throw exception?
-        }
-
-        closeSovrin(issuerWallet, proverWallet, pool)
 
         println("=== FINISHED DID GENERATION ===")
         return savedDid
@@ -98,7 +114,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== BEGIN SCHEMA CREATION ===")
         initializeSovrin()
 
-        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val pool = openPoolLedger("{}")
 
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
@@ -126,7 +142,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== BEGIN SCHEMA CREATION ===")
         initializeSovrin()
 
-        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val pool = openPoolLedger("{}")
 
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
@@ -150,7 +166,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== BEGIN STORE CLAIM OFFER ===")
         initializeSovrin()
 
-        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val pool = openPoolLedger("{}")
 
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
@@ -174,7 +190,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== BEGIN SCHEMA CREATION ===")
         initializeSovrin()
 
-        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val pool = openPoolLedger("{}")
 
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
@@ -193,7 +209,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== BEGIN CREATE CLAIM REQUEST ===")
         initializeSovrin()
 
-        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val pool = openPoolLedger("{}")
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
@@ -215,7 +231,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== BEGIN ISSUER CREATE CLAIM ===")
         initializeSovrin()
 
-        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val pool = openPoolLedger("{}")
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
@@ -237,7 +253,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== BEGIN PROVER STORE CLAIM ===")
         initializeSovrin()
 
-        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val pool = openPoolLedger("{}")
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
@@ -257,7 +273,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== BEGIN CLAIMS FOR PROOF REQUEST ===")
         initializeSovrin()
 
-        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val pool = openPoolLedger("{}")
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
@@ -279,7 +295,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         println("=== BEGIN PROVER CREATE PROOF ===")
         initializeSovrin()
 
-        val pool = Pool.openPoolLedger(poolName, "{}").get()
+        val pool = openPoolLedger("{}")
         val issuerWallet = Wallet.openWallet(issuerWalletName, null, null).get()
         val proverWallet = Wallet.openWallet(proverWalletName, null, null).get()
 
@@ -336,9 +352,9 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         }
 
         println("=== INITIALIZE SOVRIN CONFIG ===")
-        createPoolConfig(poolName, txn)
-        createWallet(poolName, issuerWalletName)
-        createWallet(poolName, proverWalletName)
+        createPoolConfig(txn)
+        createWallet(issuerWalletName)
+        createWallet(proverWalletName)
     }
 
     private fun closeSovrin(issuerWallet: Wallet, proverWallet: Wallet, pool: Pool) {
@@ -348,10 +364,10 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         pool.closePoolLedger().get()
     }
 
-    private fun createWallet(poolName: String, name: String) {
+    private fun createWallet(name: String) {
         try {
             println("=== CREATE $name WALLET ===")
-            val createdWallet = Wallet.createWallet(poolName, name, "default", null, null).get()
+            val createdWallet = Wallet.createWallet(poolname, name, "default", null, null).get()
             println("Created $name Wallet: $createdWallet")
         } catch (e: Exception) {
             if(e.cause!!::class.java.equals(IndyException::class.java)
@@ -363,12 +379,12 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         }
     }
 
-    private fun createPoolConfig(poolName: String, txn: String) {
+    private fun createPoolConfig(txn: String) {
         try {
             println("=== CREATE POOL ===")
             val createPoolLedgerConfigJSONParameter = CreatePoolLedgerConfigJSONParameter(txn)
             println("CreatePoolLedgerConfigJSONParameter: " + createPoolLedgerConfigJSONParameter)
-            Pool.createPoolLedgerConfig(poolName, createPoolLedgerConfigJSONParameter.toJson()).get()
+            Pool.createPoolLedgerConfig(poolname, createPoolLedgerConfigJSONParameter.toJson()).get()
         } catch (e: Exception) {
             if(e.cause!!::class.java.equals(IndyException::class.java)
                     && (e.cause as IndyException).errorCode.toString() == "PoolLedgerConfigAlreadyExistsError") {
@@ -377,5 +393,9 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
                 throw e
             }
         }
+    }
+
+    private fun openPoolLedger(config: String) : Pool {
+        return Pool.openPoolLedger(poolname, config).get()
     }
 }
