@@ -17,6 +17,42 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 
 /***/ }),
 
+/***/ "../../../../../src/app/app-routing.module.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var APP_ROUTES = [
+    { path: 'networkmap', component: __WEBPACK_IMPORTED_MODULE_0__components_network_map_network_map_component__["a" /* NetworkMapComponent */] }
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
+    }
+    return AppRoutingModule;
+}());
+AppRoutingModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
+        imports: [__WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */].forRoot(APP_ROUTES)],
+        exports: [__WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */]]
+    })
+], AppRoutingModule);
+
+//# sourceMappingURL=app-routing.module.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/app.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38,7 +74,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<in-left-nav-bar></in-left-nav-bar>"
+module.exports = "<in-left-nav-bar></in-left-nav-bar>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -78,22 +114,24 @@ AppComponent = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_custom_toaster__ = __webpack_require__("../../../../../src/app/shared/custom-toaster.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng2_toastr__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_toastr_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_toastr_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng2_toastr_ng2_toastr__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_indigo_service__ = __webpack_require__("../../../../../src/app/shared/services/indigo.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__left_nav_bar_left_nav_bar_component__ = __webpack_require__("../../../../../src/app/left-nav-bar/left-nav-bar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_cdk_table__ = __webpack_require__("../../../cdk/esm5/table.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_custom_toaster__ = __webpack_require__("../../../../../src/app/shared/custom-toaster.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ng2_toastr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_indigo_service__ = __webpack_require__("../../../../../src/app/shared/services/indigo.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__left_nav_bar_left_nav_bar_component__ = __webpack_require__("../../../../../src/app/left-nav-bar/left-nav-bar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_cdk_table__ = __webpack_require__("../../../cdk/esm5/table.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -114,65 +152,159 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var AppModule = (function () {
     function AppModule() {
     }
     return AppModule;
 }());
 AppModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_7__angular_core__["NgModule"])({
+    Object(__WEBPACK_IMPORTED_MODULE_8__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_5__left_nav_bar_left_nav_bar_component__["a" /* LeftNavBarComponent */]
+            __WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__left_nav_bar_left_nav_bar_component__["a" /* LeftNavBarComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__components_network_map_network_map_component__["a" /* NetworkMapComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_3_ng2_toastr_ng2_toastr__["ToastModule"].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_2__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__["BrowserModule"],
-            __WEBPACK_IMPORTED_MODULE_9__angular_http__["c" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_8__angular_forms__["c" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["a" /* MatAutocompleteModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["b" /* MatButtonModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["c" /* MatButtonToggleModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["d" /* MatCardModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["e" /* MatCheckboxModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["f" /* MatChipsModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["g" /* MatDatepickerModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["h" /* MatDialogModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["i" /* MatExpansionModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["k" /* MatGridListModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["l" /* MatIconModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["m" /* MatInputModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["n" /* MatListModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["o" /* MatMenuModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["p" /* MatNativeDateModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["r" /* MatPaginatorModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["s" /* MatProgressBarModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["t" /* MatProgressSpinnerModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["u" /* MatRadioModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["v" /* MatRippleModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["w" /* MatSelectModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["x" /* MatSidenavModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["z" /* MatSliderModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["y" /* MatSlideToggleModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["A" /* MatSnackBarModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["B" /* MatSortModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["D" /* MatTableModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["E" /* MatTabsModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["F" /* MatToolbarModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["G" /* MatTooltipModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["q" /* MatOptionModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["j" /* MatFormFieldModule */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["C" /* MatStepperModule */],
-            __WEBPACK_IMPORTED_MODULE_10__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_cdk_table__["m" /* CdkTableModule */]
+            __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__["ToastModule"].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser__["BrowserModule"],
+            __WEBPACK_IMPORTED_MODULE_10__angular_http__["c" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_9__angular_forms__["c" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["a" /* MatAutocompleteModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["b" /* MatButtonModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["c" /* MatButtonToggleModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["d" /* MatCardModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["e" /* MatCheckboxModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["f" /* MatChipsModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["g" /* MatDatepickerModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["h" /* MatDialogModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["i" /* MatExpansionModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["k" /* MatGridListModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["l" /* MatIconModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["m" /* MatInputModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["n" /* MatListModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["o" /* MatMenuModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["p" /* MatNativeDateModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["r" /* MatPaginatorModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["s" /* MatProgressBarModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["t" /* MatProgressSpinnerModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["u" /* MatRadioModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["v" /* MatRippleModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["w" /* MatSelectModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["x" /* MatSidenavModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["z" /* MatSliderModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["y" /* MatSlideToggleModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["A" /* MatSnackBarModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["B" /* MatSortModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["D" /* MatTableModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["E" /* MatTabsModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["F" /* MatToolbarModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["G" /* MatTooltipModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["q" /* MatOptionModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["j" /* MatFormFieldModule */],
+            __WEBPACK_IMPORTED_MODULE_13__angular_material__["C" /* MatStepperModule */],
+            __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_cdk_table__["m" /* CdkTableModule */],
+            __WEBPACK_IMPORTED_MODULE_0__app_routing_module__["a" /* AppRoutingModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_4__shared_services_indigo_service__["a" /* IndigoService */], { provide: __WEBPACK_IMPORTED_MODULE_1_ng2_toastr__["ToastOptions"], useClass: __WEBPACK_IMPORTED_MODULE_0__shared_custom_toaster__["a" /* CustomOption */] }],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* AppComponent */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_5__shared_services_indigo_service__["a" /* IndigoService */], { provide: __WEBPACK_IMPORTED_MODULE_2_ng2_toastr__["ToastOptions"], useClass: __WEBPACK_IMPORTED_MODULE_1__shared_custom_toaster__["a" /* CustomOption */] }],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
 //# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/network-map/network-map.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/network-map/network-map.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n    <h2>Peers</h2>\n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th>Name</th>\n        \n            <th>Sovrin DID</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let peer of peers\">\n        \n          <td>{{peer.x500Name}}</td>\n          <td>{{peer.sovrinDID}}</td>\n        </tr>\n        \n      </tbody>\n    </table>\n  </div>\n  "
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/network-map/network-map.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NetworkMapComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ng2_toastr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_abstract_component__ = __webpack_require__("../../../../../src/app/shared/abstract-component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_indigo_service__ = __webpack_require__("../../../../../src/app/shared/services/indigo.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var NetworkMapComponent = (function (_super) {
+    __extends(NetworkMapComponent, _super);
+    function NetworkMapComponent(indigoService, toastr, vcr) {
+        var _this = _super.call(this, toastr, vcr) || this;
+        _this.indigoService = indigoService;
+        _this.toastr = toastr;
+        return _this;
+    }
+    NetworkMapComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.indigoService.fetchPeers().then(function (data) { return _this.peers = data; })
+            .catch(function (e) {
+            console.log(e);
+            _this.toastr.error(e, 'Error');
+        });
+    };
+    return NetworkMapComponent;
+}(__WEBPACK_IMPORTED_MODULE_1__shared_abstract_component__["a" /* AbstractComponent */]));
+NetworkMapComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
+        selector: 'app-network-map',
+        template: __webpack_require__("../../../../../src/app/components/network-map/network-map.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/network-map/network-map.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_indigo_service__["a" /* IndigoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_indigo_service__["a" /* IndigoService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0_ng2_toastr__["ToastsManager"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_ng2_toastr__["ToastsManager"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewContainerRef"]) === "function" && _c || Object])
+], NetworkMapComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=network-map.component.js.map
 
 /***/ }),
 
@@ -216,7 +348,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/left-nav-bar/left-nav-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-sidenav\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span> \n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Corda-Sovrin</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li><a href=\"#\"><i class=\"fa fa-telegram\"></i></a> </li>\n        <li><a href=\"#\"><i class=\"fa fa-cog\"></i></a> </li>\n       \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> {{meShort}}</a></li>\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\n        </ul>\n    </div>\n  </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-sidenav\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span> \n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Corda-Sovrin</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li><a href=\"#\"><i class=\"fa fa-telegram\"></i></a> </li>\n        <li><a href=\"#\"><i class=\"fa fa-cog\"></i></a> </li>\n        <li><a [routerLink]=\"['networkmap']\"><i class=\"fa fa-users\" title=\"Peers\"></i></a> </li>\n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> {{meShort}}</a></li>\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\n        </ul>\n    </div>\n  </div>\n</nav>"
 
 /***/ }),
 
@@ -225,11 +357,22 @@ module.exports = "<nav class=\"navbar navbar-inverse navbar-sidenav\">\n  <div c
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LeftNavBarComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__("../../../../../src/app/utils.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_indigo_service__ = __webpack_require__("../../../../../src/app/shared/services/indigo.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng2_toastr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_abstract_component__ = __webpack_require__("../../../../../src/app/shared/abstract-component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__("../../../../../src/app/utils.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_indigo_service__ = __webpack_require__("../../../../../src/app/shared/services/indigo.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_toastr__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -243,16 +386,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LeftNavBarComponent = (function () {
+
+var LeftNavBarComponent = (function (_super) {
+    __extends(LeftNavBarComponent, _super);
     function LeftNavBarComponent(indigoService, toastr, vcr) {
-        this.indigoService = indigoService;
-        this.toastr = toastr;
-        this.toastr.setRootViewContainerRef(vcr);
+        var _this = _super.call(this, toastr, vcr) || this;
+        _this.indigoService = indigoService;
+        _this.toastr = toastr;
+        return _this;
     }
     Object.defineProperty(LeftNavBarComponent.prototype, "meShort", {
         get: function () {
             if (this.me) {
-                return __WEBPACK_IMPORTED_MODULE_0__utils__["a" /* Utils */].getShortName(this.me.me);
+                return __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].getShortName(this.me.me);
             }
         },
         enumerable: true,
@@ -269,18 +415,35 @@ var LeftNavBarComponent = (function () {
         });
     };
     return LeftNavBarComponent;
-}());
+}(__WEBPACK_IMPORTED_MODULE_0__shared_abstract_component__["a" /* AbstractComponent */]));
 LeftNavBarComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
+    Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
         selector: 'in-left-nav-bar',
         template: __webpack_require__("../../../../../src/app/left-nav-bar/left-nav-bar.component.html"),
         styles: [__webpack_require__("../../../../../src/app/left-nav-bar/left-nav-bar.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_indigo_service__["a" /* IndigoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_indigo_service__["a" /* IndigoService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ng2_toastr__["ToastsManager"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ng2_toastr__["ToastsManager"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_core__["ViewContainerRef"]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_services_indigo_service__["a" /* IndigoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_services_indigo_service__["a" /* IndigoService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_ng2_toastr__["ToastsManager"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ng2_toastr__["ToastsManager"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewContainerRef"]) === "function" && _c || Object])
 ], LeftNavBarComponent);
 
 var _a, _b, _c;
 //# sourceMappingURL=left-nav-bar.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/abstract-component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractComponent; });
+var AbstractComponent = (function () {
+    function AbstractComponent(toastr, vcr) {
+        this.toastr = toastr;
+        this.toastr.setRootViewContainerRef(vcr);
+    }
+    return AbstractComponent;
+}());
+
+//# sourceMappingURL=abstract-component.js.map
 
 /***/ }),
 
@@ -378,6 +541,15 @@ var IndigoService = (function () {
     }
     IndigoService.prototype.fetchMe = function () {
         var req = __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].getHttpRequest(this.baseUrl + '/api/com.indigo/me');
+        return this.http.request(req)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].handleError(error);
+        });
+    };
+    IndigoService.prototype.fetchPeers = function () {
+        var req = __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].getHttpRequest(this.baseUrl + '/api/com.indigo/AllPeers');
         return this.http.request(req)
             .toPromise()
             .then(function (res) { return res.json(); })
