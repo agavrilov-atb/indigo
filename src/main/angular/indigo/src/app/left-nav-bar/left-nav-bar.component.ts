@@ -13,25 +13,27 @@ import { ToastsManager } from 'ng2-toastr';
 })
 export class LeftNavBarComponent extends AbstractComponent implements OnInit {
 
-  public me: me;
+
+  public myinfo: me;
   get meShort(): string {
-    if (this.me) {
-      return Utils.getShortName(this.me.me);
+    if (this.myinfo) {
+      return Utils.getShortName(this.myinfo.me.x500Name);
     }
   }
-  constructor(private indigoService: IndigoService,public toastr: ToastsManager, vcr: ViewContainerRef
-    ) {
-    super(toastr,vcr);
-      
+
+  constructor(public indigoService: IndigoService,public toastr: ToastsManager
+    , vcr: ViewContainerRef) {
+    super(indigoService,toastr,vcr)
   }
   ngOnInit() {
-    this.indigoService.fetchMe().then(me => {
-                     this.me = me;
-                     this.toastr.success(this.meShort + ' ,welcome to Corda-Sovrin!', 'Success!');
-                   }).catch(
-                   e => {
-                     console.log(e);
-                     this.toastr.error(e,'Error');
-                   });
-  }
+    debugger;
+  this.indigoService.fetchMe().then(me => {
+                   this.myinfo = me;
+            //       this.toastr.success(this.meShort + ' ,welcome to Corda-Sovrin!', 'Success!');
+                 }).catch(
+                 e => {
+                   console.log(e);
+                   this.toastr.error(e,'Error');
+                 });
+}
 }

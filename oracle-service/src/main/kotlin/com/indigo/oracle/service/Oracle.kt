@@ -37,13 +37,13 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
     private var poolname = ""
     private var txn = ""
     init {
-        val local = true
+        val local = false
         if(local) {
             poolname = "localhost"
             txn = "/Users/austinmoothart/dev/project-indigo/oracle-service/lib/localhost.txn"
         } else {
             poolname = "stn"
-            txn = "/Users/austinmoothart/dev/project-indigo/oracle-service/lib/stn.txn"
+            txn = "/Users/nxshah5/IdeaProjects/project-indigo/oracle-service/lib/stn.txn"
         }
     }
 

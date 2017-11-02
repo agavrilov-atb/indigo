@@ -22,9 +22,10 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_trust_management_trust_management_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -34,8 +35,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var APP_ROUTES = [
-    { path: 'networkmap', component: __WEBPACK_IMPORTED_MODULE_0__components_network_map_network_map_component__["a" /* NetworkMapComponent */] }
+    { path: 'networkmap', component: __WEBPACK_IMPORTED_MODULE_1__components_network_map_network_map_component__["a" /* NetworkMapComponent */] },
+    { path: 'trust', component: __WEBPACK_IMPORTED_MODULE_0__components_trust_management_trust_management_component__["a" /* TrustManagementComponent */] }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -43,9 +46,9 @@ var AppRoutingModule = (function () {
     return AppRoutingModule;
 }());
 AppRoutingModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
-        imports: [__WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */].forRoot(APP_ROUTES)],
-        exports: [__WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */]]
+    Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
+        imports: [__WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* RouterModule */].forRoot(APP_ROUTES)],
+        exports: [__WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* RouterModule */]]
     })
 ], AppRoutingModule);
 
@@ -132,12 +135,16 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_cdk_table__ = __webpack_require__("../../../cdk/esm5/table.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_trust_management_trust_management_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_trust_management_trust_trust_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust/trust.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -164,7 +171,9 @@ AppModule = __decorate([
         declarations: [
             __WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_6__left_nav_bar_left_nav_bar_component__["a" /* LeftNavBarComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__components_network_map_network_map_component__["a" /* NetworkMapComponent */]
+            __WEBPACK_IMPORTED_MODULE_15__components_network_map_network_map_component__["a" /* NetworkMapComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__components_trust_management_trust_management_component__["a" /* TrustManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__components_trust_management_trust_trust_component__["a" /* TrustComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__["ToastModule"].forRoot(),
@@ -279,7 +288,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var NetworkMapComponent = (function (_super) {
     __extends(NetworkMapComponent, _super);
     function NetworkMapComponent(indigoService, toastr, vcr) {
-        var _this = _super.call(this, toastr, vcr) || this;
+        var _this = _super.call(this, indigoService, toastr, vcr) || this;
         _this.indigoService = indigoService;
         _this.toastr = toastr;
         return _this;
@@ -296,7 +305,7 @@ var NetworkMapComponent = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_1__shared_abstract_component__["a" /* AbstractComponent */]));
 NetworkMapComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
-        selector: 'app-network-map',
+        selector: 'network-map',
         template: __webpack_require__("../../../../../src/app/components/network-map/network-map.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/network-map/network-map.component.css")]
     }),
@@ -305,6 +314,173 @@ NetworkMapComponent = __decorate([
 
 var _a, _b, _c;
 //# sourceMappingURL=network-map.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/trust-management/trust-management.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/trust-management/trust-management.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n<h3>My DID <span class=\"label label-default\">{{myDID}}</span></h3> \n<br><br>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n        \n                    <div class=\"panel panel-default\">\n                            <div class=\"panel-heading\">Setup Trust</div>\n                            <div class=\"panel-body\">\n                                \n                                    <form>\n                                            <div class=\"form-group\">\n                                              <label for=\"otherPartyDID\">Other Party DID:</label>\n                                              <input class=\"form-control\" id=\"otherPartyDID\">\n                                            </div>\n                                        \n                                            <button type=\"submit\" class=\"btn btn-default\">Setup</button>\n                                    </form>\n                            </div>\n                    </div>\n            </div>\n\n            <div class=\"col-sm-8\">\n                    \n                    \n                    <trust title=\"Pending Trusts From Me\"></trust>\n                    <trust title=\"Pending Trusts From Others\"></trust>\n                    <trust title=\"Established Trusts\"></trust>\n            </div>\n        \n      </div> \n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/trust-management/trust-management.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrustManagementComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_indigo_service__ = __webpack_require__("../../../../../src/app/shared/services/indigo.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng2_toastr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_abstract_component__ = __webpack_require__("../../../../../src/app/shared/abstract-component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var TrustManagementComponent = (function (_super) {
+    __extends(TrustManagementComponent, _super);
+    function TrustManagementComponent(indigoService, toastr, vcr) {
+        var _this = _super.call(this, indigoService, toastr, vcr) || this;
+        _this.indigoService = indigoService;
+        _this.toastr = toastr;
+        debugger;
+        _this.indigoService.fetchMe().then(function (me) {
+            console.log(me);
+            _this.me = me;
+            //       this.toastr.success(this.meShort + ' ,welcome to Corda-Sovrin!', 'Success!');
+        }).catch(function (e) {
+            console.log(e);
+            _this.toastr.error(e, 'Error');
+        });
+        return _this;
+    }
+    Object.defineProperty(TrustManagementComponent.prototype, "myDID", {
+        get: function () {
+            if (this.me) {
+                return this.me.me.sovrinDID;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TrustManagementComponent.prototype.ngOnInit = function () {
+    };
+    return TrustManagementComponent;
+}(__WEBPACK_IMPORTED_MODULE_2__shared_abstract_component__["a" /* AbstractComponent */]));
+TrustManagementComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
+        selector: 'trust-management',
+        template: __webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__shared_services_indigo_service__["a" /* IndigoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_services_indigo_service__["a" /* IndigoService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ng2_toastr__["ToastsManager"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ng2_toastr__["ToastsManager"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewContainerRef"]) === "function" && _c || Object])
+], TrustManagementComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=trust-management.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/trust-management/trust/trust.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/trust-management/trust/trust.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-default\">\n    <div class=\"panel-heading\">{{title}}</div>\n    <div class=\"panel-body\">       \n    <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                <th>Name</th>\n                <th>Sovrin DID</th>\n                <th>Date</th>\n                <th>Action</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let peer of peers\">\n                \n                <td>{{peer.x500Name}}</td>\n                <td>{{peer.sovrinDID}}</td>\n                </tr>\n                \n            </tbody>\n            </table>\n        </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/trust-management/trust/trust.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrustComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var TrustComponent = (function () {
+    function TrustComponent() {
+    }
+    TrustComponent.prototype.ngOnInit = function () {
+    };
+    return TrustComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], TrustComponent.prototype, "title", void 0);
+TrustComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'trust',
+        template: __webpack_require__("../../../../../src/app/components/trust-management/trust/trust.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/trust-management/trust/trust.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], TrustComponent);
+
+//# sourceMappingURL=trust.component.js.map
 
 /***/ }),
 
@@ -348,7 +524,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/left-nav-bar/left-nav-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-sidenav\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span> \n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Corda-Sovrin</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li><a href=\"#\"><i class=\"fa fa-telegram\"></i></a> </li>\n        <li><a href=\"#\"><i class=\"fa fa-cog\"></i></a> </li>\n        <li><a [routerLink]=\"['networkmap']\"><i class=\"fa fa-users\" title=\"Peers\"></i></a> </li>\n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> {{meShort}}</a></li>\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\n        </ul>\n    </div>\n  </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-sidenav\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span> \n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Corda-Sovrin</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li [routerLinkActive]=\"['active']\"><a href=\"#\"><i class=\"fa fa-telegram\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a href=\"#\"><i class=\"fa fa-cog\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['networkmap']\"><i class=\"fa fa-users\" title=\"Peers\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['trust']\"><i class=\"fa fa-handshake-o\" title=\"Trust Management\"></i></a> </li>\n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> {{meShort}}</a></li>\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\n        </ul>\n    </div>\n  </div>\n</nav>"
 
 /***/ }),
 
@@ -390,15 +566,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var LeftNavBarComponent = (function (_super) {
     __extends(LeftNavBarComponent, _super);
     function LeftNavBarComponent(indigoService, toastr, vcr) {
-        var _this = _super.call(this, toastr, vcr) || this;
+        var _this = _super.call(this, indigoService, toastr, vcr) || this;
         _this.indigoService = indigoService;
         _this.toastr = toastr;
         return _this;
     }
     Object.defineProperty(LeftNavBarComponent.prototype, "meShort", {
         get: function () {
-            if (this.me) {
-                return __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].getShortName(this.me.me);
+            if (this.myinfo) {
+                return __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].getShortName(this.myinfo.me.x500Name);
             }
         },
         enumerable: true,
@@ -406,9 +582,10 @@ var LeftNavBarComponent = (function (_super) {
     });
     LeftNavBarComponent.prototype.ngOnInit = function () {
         var _this = this;
+        debugger;
         this.indigoService.fetchMe().then(function (me) {
-            _this.me = me;
-            _this.toastr.success(_this.meShort + ' ,welcome to Corda-Sovrin!', 'Success!');
+            _this.myinfo = me;
+            //       this.toastr.success(this.meShort + ' ,welcome to Corda-Sovrin!', 'Success!');
         }).catch(function (e) {
             console.log(e);
             _this.toastr.error(e, 'Error');
@@ -436,7 +613,8 @@ var _a, _b, _c;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractComponent; });
 var AbstractComponent = (function () {
-    function AbstractComponent(toastr, vcr) {
+    function AbstractComponent(indigoService, toastr, vcr) {
+        this.indigoService = indigoService;
         this.toastr = toastr;
         this.toastr.setRootViewContainerRef(vcr);
     }
@@ -540,22 +718,30 @@ var IndigoService = (function () {
         this.baseUrl = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* Constants */].baseUrl;
     }
     IndigoService.prototype.fetchMe = function () {
+        var _this = this;
+        debugger;
         var req = __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].getHttpRequest(this.baseUrl + '/api/com.indigo/me');
-        return this.http.request(req)
-            .toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) {
-            return __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].handleError(error);
-        });
+        return this._me ? Promise.resolve(this._me) :
+            this.http.request(req)
+                .toPromise()
+                .then(function (res) {
+                _this._me = res.json();
+                return _this._me;
+            })
+                .catch(function (error) {
+                return __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].handleError(error);
+            });
     };
     IndigoService.prototype.fetchPeers = function () {
+        var _this = this;
         var req = __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].getHttpRequest(this.baseUrl + '/api/com.indigo/AllPeers');
-        return this.http.request(req)
-            .toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) {
-            return __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].handleError(error);
-        });
+        return this._peers ? Promise.resolve(this._peers) :
+            this.http.request(req)
+                .toPromise()
+                .then(function (res) { return _this._peers = res.json(); })
+                .catch(function (error) {
+                return __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].handleError(error);
+            });
     };
     return IndigoService;
 }());

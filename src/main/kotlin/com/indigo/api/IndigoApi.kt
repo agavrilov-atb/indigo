@@ -1,19 +1,18 @@
 package com.indigo.api
 
 import com.indigo.config.IndigoNode
-import net.corda.client.rpc.notUsed
-import net.corda.core.identity.CordaX500Name
+import com.indigo.config.config
 import net.corda.core.messaging.CordaRPCOps
 import net.corda.core.utilities.loggerFor
-import net.corda.core.utilities.toBase58String
-import javax.ws.rs.*
+import javax.ws.rs.GET
+import javax.ws.rs.Path
+import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
-import javax.ws.rs.core.Response
 
 
 @Path("com.indigo")
 class IndigoApi(val services: CordaRPCOps) {
-    private val myLegalName = services.nodeInfo().legalIdentities[0].name
+    private val myNode = services.nodeInfo()
 
     private companion object {
         val logger = loggerFor<IndigoApi>()
@@ -25,7 +24,7 @@ class IndigoApi(val services: CordaRPCOps) {
     @GET
     @Path("me")
     @Produces(MediaType.APPLICATION_JSON)
-    fun whoami() = mapOf("me" to myLegalName)
+    fun whoami() = mapOf("me" to myNode.config())
 
     /**
      * Returns all parties registered with the [NetworkMapService]. These names can be used to look up identities
@@ -34,13 +33,13 @@ class IndigoApi(val services: CordaRPCOps) {
     @GET
     @Path("AllPeers")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getAllPeers(): List<IndigoNode?> {
+    fun getAllPeers(): List<IndigoNode> {
         val nodeInfo = services.networkMapSnapshot()
+
         return nodeInfo
-                .map { it.legalIdentities.first().name }
+                .map { it.config() }
                 //filter out myself, notary and eventual network map started by driver
-                .filter { it != myLegalName }
-                .map { IndigoNode.getIndigoNode(it) }
+                .filter { myNode.config().x500Name != it.x500Name  }
                 .toList()
 
     }

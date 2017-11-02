@@ -10,9 +10,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#"><i class="fa fa-telegram"></i></a> </li>
-        <li><a href="#"><i class="fa fa-cog"></i></a> </li>
-        <li><a [routerLink]="['networkmap']"><i class="fa fa-users" title="Peers"></i></a> </li>
+        <li [routerLinkActive]="['active']"><a href="#"><i class="fa fa-telegram"></i></a> </li>
+        <li [routerLinkActive]="['active']"><a href="#"><i class="fa fa-cog"></i></a> </li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['networkmap']"><i class="fa fa-users" title="Peers"></i></a> </li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['trust']"><i class="fa fa-handshake-o" title="Trust Management"></i></a> </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{meShort}}</a></li>

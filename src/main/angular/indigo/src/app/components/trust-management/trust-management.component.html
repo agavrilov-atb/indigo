@@ -1,0 +1,32 @@
+<div class="container">
+<h3>My DID <span class="label label-default">{{myDID}}</span></h3> 
+<br><br>
+        <div class="row">
+            <div class="col-sm-4">
+        
+                    <div class="panel panel-default">
+                            <div class="panel-heading">Setup Trust</div>
+                            <div class="panel-body">
+                                
+                                    <form>
+                                            <div class="form-group">
+                                              <label for="otherPartyDID">Other Party DID:</label>
+                                              <input class="form-control" id="otherPartyDID">
+                                            </div>
+                                        
+                                            <button type="submit" class="btn btn-default">Setup</button>
+                                    </form>
+                            </div>
+                    </div>
+            </div>
+
+            <div class="col-sm-8">
+                    
+                    
+                    <trust title="Pending Trusts From Me"></trust>
+                    <trust title="Pending Trusts From Others"></trust>
+                    <trust title="Established Trusts"></trust>
+            </div>
+        
+      </div> 
+</div>

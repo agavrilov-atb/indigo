@@ -10,17 +10,23 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class IndigoService {
     private baseUrl;
-    private _me: me;
+    
+  private _me: me;
+  private _peers: Peer[];
   constructor(private http: Http) {
     this.baseUrl = Constants.baseUrl
   }
 
   
   fetchMe():Promise<me> {
+    debugger;
     const req = Utils.getHttpRequest(this.baseUrl + '/api/com.indigo/me');
-    return this.http.request(req)
+    return this._me ? Promise.resolve(this._me) :
+     this.http.request(req)
                 .toPromise()
-                .then( res=> res.json() as me)
+                .then( res=> {this._me = res.json() as me
+                  return this._me;
+                })
                 .catch((error: Response) => {
                  return Utils.handleError(error);
 
@@ -28,10 +34,13 @@ export class IndigoService {
   }
 
   fetchPeers():Promise<Peer[]> {
+
     const req = Utils.getHttpRequest(this.baseUrl + '/api/com.indigo/AllPeers');
-    return this.http.request(req)
+    
+    return this._peers? Promise.resolve(this._peers):
+              this.http.request(req)
                 .toPromise()
-                .then( res=> res.json() as Peer[])
+                .then( res=> this._peers = res.json() as Peer[])
                 .catch((error: Response) => {
                  return Utils.handleError(error);
 

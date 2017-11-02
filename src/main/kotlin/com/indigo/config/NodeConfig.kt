@@ -3,11 +3,13 @@ package com.indigo.config
 import com.fasterxml.jackson.annotation.JsonFormat
 import net.corda.core.identity.CordaX500Name
 import net.corda.core.identity.Party
+import net.corda.core.node.NodeInfo
 import net.corda.core.node.services.NetworkMapCache
 import net.corda.core.serialization.CordaSerializable
 
 /**
  * Created by nxshah5 on 11/2/17.
+ * This configuration class supports additional Node Configuration.
  */
 
 @CordaSerializable
@@ -23,8 +25,14 @@ enum class IndigoNode(val x500Name: CordaX500Name,val sovrinDID:String) {
         fun getParty(node: IndigoNode, networkMapCache: NetworkMapCache): Party?
                 = networkMapCache.getNodeByLegalName(node.x500Name)?.legalIdentities?.firstOrNull()
 
-        fun getIndigoNode(x500Name: CordaX500Name): IndigoNode? = IndigoNode.values().filter { it.x500Name.equals(x500Name) }.firstOrNull()
+        fun getIndigoNode(x500Name: CordaX500Name): IndigoNode = IndigoNode.values().filter { it.x500Name.equals(x500Name) }.first()
     }
 
 }
 
+/**
+ * User this extension function to find additional node configuration.
+ */
+public fun NodeInfo.config(): IndigoNode {
+    return IndigoNode.getIndigoNode(this.legalIdentities.first().name)
+}

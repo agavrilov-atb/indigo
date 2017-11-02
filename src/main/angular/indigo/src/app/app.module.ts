@@ -6,7 +6,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { IndigoService } from './shared/services/indigo.service';
 import { LeftNavBarComponent } from './left-nav-bar/left-nav-bar.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -50,11 +50,15 @@ import {
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { NetworkMapComponent } from './components/network-map/network-map.component';
+import { TrustManagementComponent } from './components/trust-management/trust-management.component';
+import { TrustComponent } from './components/trust-management/trust/trust.component';
 @NgModule({
   declarations: [
     AppComponent,
     LeftNavBarComponent,
-    NetworkMapComponent
+    NetworkMapComponent,
+    TrustManagementComponent,
+    TrustComponent
   ],
   imports: [
     ToastModule.forRoot(),

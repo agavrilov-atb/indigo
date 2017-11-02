@@ -1,6 +1,6 @@
 export class me {
 
-  me: string;
+  me: Peer;
   
 }
 
