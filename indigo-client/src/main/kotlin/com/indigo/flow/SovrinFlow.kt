@@ -62,7 +62,7 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
 
         progressTracker.currentStep = CREATING_SCHEMA
         val schema = "{\"seqNo\":1,\"data\": {\"name\":\"gvt\",\"version\":\"1.0\",\"keys\":[\"age\",\"sex\",\"height\",\"name\"]}}"
-        val newSchema = subFlow(CreateSchema(oracle, schema))
+        val newSchema = subFlow(CreateClaimDef(oracle, schema))
 
         progressTracker.currentStep = ESTABLISHING_MASTER_SECRET
         subFlow(EstablishMasterSecret(oracle, "mastersecret"))

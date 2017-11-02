@@ -116,7 +116,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         return savedDid
     }
 
-    fun createSchema(schema: String): String {
+    fun createClaimDef(schema: String): String {
         println("=== BEGIN SCHEMA CREATION ===")
         initializeSovrin()
 

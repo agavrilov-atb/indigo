@@ -27,7 +27,7 @@ class SovrinOracleClientTests {
 
         val oracle = mockNet.createNode(nodes.mapNode.network.myAddress, legalName = CordaX500Name("Oracle", "New York", "US"))
         listOf(GenerateDIDHandler::class.java,
-                CreateSchemaHandler::class.java,
+                CreateClaimDefHandler::class.java,
                 EstablishMasterSecretHandler::class.java,
                 StoreClaimOfferHandler::class.java,
                 GetClaimOffersHandler::class.java,

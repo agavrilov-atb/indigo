@@ -7,6 +7,6 @@ import net.corda.core.identity.Party
 import net.corda.core.utilities.unwrap
 
 @InitiatingFlow
-class CreateSchema(val oracle: Party, val schema: String) : FlowLogic<String>() {
+class CreateClaimDef(val oracle: Party, val schema: String) : FlowLogic<String>() {
     @Suspendable override fun call() = initiateFlow(oracle).sendAndReceive<String>(schema).unwrap { it }
 }
