@@ -52,13 +52,29 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { NetworkMapComponent } from './components/network-map/network-map.component';
 import { TrustManagementComponent } from './components/trust-management/trust-management.component';
 import { TrustComponent } from './components/trust-management/trust/trust.component';
+import { ClaimManagementComponent } from './components/claim-management/claim-management.component';
+import { ProofManagementComponent } from './components/proof-management/proof-management.component';
+import { ClaimComponent } from './components/claim-management/claim/claim.component';
+import { ClaimDefComponent } from './components/claim-management/claim-def/claim-def.component';
+import { ClaimReqComponent } from './components/claim-management/claim-req/claim-req.component';
+import { ProofsIssuedComponent } from './components/proof-management/proofs-issued/proofs-issued.component';
+import { ProofsRequestedComponent } from './components/proof-management/proofs-requested/proofs-requested.component';
+import { ProofsReceivedComponent } from './components/proof-management/proofs-received/proofs-received.component';
 @NgModule({
   declarations: [
     AppComponent,
     LeftNavBarComponent,
     NetworkMapComponent,
     TrustManagementComponent,
-    TrustComponent
+    TrustComponent,
+    ClaimManagementComponent,
+    ProofManagementComponent,
+    ClaimComponent,
+    ClaimDefComponent,
+    ClaimReqComponent,
+    ProofsIssuedComponent,
+    ProofsRequestedComponent,
+    ProofsReceivedComponent
   ],
   imports: [
     ToastModule.forRoot(),

@@ -6,14 +6,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="#">Corda-Sovrin</a>
+      <a class="navbar-brand" href="#"><span><img src="favicon.png"></span><span><img src="assets/sovrin.png" style="width:20px"></span></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li [routerLinkActive]="['active']"><a href="#"><i class="fa fa-telegram"></i></a> </li>
-        <li [routerLinkActive]="['active']"><a href="#"><i class="fa fa-cog"></i></a> </li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['networkmap']"><i class="fa fa-users" title="Peers"></i></a> </li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['trust']"><i class="fa fa-handshake-o" title="Trust Management"></i></a> </li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['claim']"><i class="fa fa-id-card-o" title="Claim Management"></i></a> </li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['proof']"><i class="fa fa-send-o" title="Claim/Proof Management"></i></a> </li>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{meShort}}</a></li>

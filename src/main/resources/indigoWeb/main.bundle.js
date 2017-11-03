@@ -22,10 +22,12 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_trust_management_trust_management_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_proof_management_proof_management_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proof-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_claim_management_claim_management_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_trust_management_trust_management_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -36,9 +38,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var APP_ROUTES = [
-    { path: 'networkmap', component: __WEBPACK_IMPORTED_MODULE_1__components_network_map_network_map_component__["a" /* NetworkMapComponent */] },
-    { path: 'trust', component: __WEBPACK_IMPORTED_MODULE_0__components_trust_management_trust_management_component__["a" /* TrustManagementComponent */] }
+    { path: 'networkmap', component: __WEBPACK_IMPORTED_MODULE_3__components_network_map_network_map_component__["a" /* NetworkMapComponent */] },
+    { path: 'trust', component: __WEBPACK_IMPORTED_MODULE_2__components_trust_management_trust_management_component__["a" /* TrustManagementComponent */] },
+    { path: 'claim', component: __WEBPACK_IMPORTED_MODULE_1__components_claim_management_claim_management_component__["a" /* ClaimManagementComponent */] },
+    { path: 'proof', component: __WEBPACK_IMPORTED_MODULE_0__components_proof_management_proof_management_component__["a" /* ProofManagementComponent */] },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -46,9 +52,9 @@ var AppRoutingModule = (function () {
     return AppRoutingModule;
 }());
 AppRoutingModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
-        imports: [__WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* RouterModule */].forRoot(APP_ROUTES)],
-        exports: [__WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* RouterModule */]]
+    Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["NgModule"])({
+        imports: [__WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* RouterModule */].forRoot(APP_ROUTES)],
+        exports: [__WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* RouterModule */]]
     })
 ], AppRoutingModule);
 
@@ -137,12 +143,28 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_trust_management_trust_management_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_trust_management_trust_trust_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust/trust.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_claim_management_claim_management_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_proof_management_proof_management_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proof-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_claim_management_claim_claim_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim/claim.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_claim_management_claim_def_claim_def_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-def/claim-def.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_claim_management_claim_req_claim_req_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-req/claim-req.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_proof_management_proofs_issued_proofs_issued_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proofs-issued/proofs-issued.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_proof_management_proofs_requested_proofs_requested_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proofs-requested/proofs-requested.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_proof_management_proofs_received_proofs_received_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proofs-received/proofs-received.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
+
+
+
 
 
 
@@ -173,7 +195,15 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__left_nav_bar_left_nav_bar_component__["a" /* LeftNavBarComponent */],
             __WEBPACK_IMPORTED_MODULE_15__components_network_map_network_map_component__["a" /* NetworkMapComponent */],
             __WEBPACK_IMPORTED_MODULE_16__components_trust_management_trust_management_component__["a" /* TrustManagementComponent */],
-            __WEBPACK_IMPORTED_MODULE_17__components_trust_management_trust_trust_component__["a" /* TrustComponent */]
+            __WEBPACK_IMPORTED_MODULE_17__components_trust_management_trust_trust_component__["a" /* TrustComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__components_claim_management_claim_management_component__["a" /* ClaimManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__components_proof_management_proof_management_component__["a" /* ProofManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__components_claim_management_claim_claim_component__["a" /* ClaimComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__components_claim_management_claim_def_claim_def_component__["a" /* ClaimDefComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__components_claim_management_claim_req_claim_req_component__["a" /* ClaimReqComponent */],
+            __WEBPACK_IMPORTED_MODULE_23__components_proof_management_proofs_issued_proofs_issued_component__["a" /* ProofsIssuedComponent */],
+            __WEBPACK_IMPORTED_MODULE_24__components_proof_management_proofs_requested_proofs_requested_component__["a" /* ProofsRequestedComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__components_proof_management_proofs_received_proofs_received_component__["a" /* ProofsReceivedComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__["ToastModule"].forRoot(),
@@ -224,6 +254,250 @@ AppModule = __decorate([
 ], AppModule);
 
 //# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim-def/claim-def.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim-def/claim-def.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-danger\">\n    <div class=\"panel-heading\">Available Claim Definitions</div>\n    <div class=\"panel-body\">       \n    <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                <th>Claim Def Name</th>\n                <th>Seq No.</th>\n                <th>Date</th>\n                <th>Action</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let peer of peers\">\n                \n                <td>{{peer.x500Name}}</td>\n                <td>{{peer.sovrinDID}}</td>\n                </tr>\n                \n            </tbody>\n            </table>\n        </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim-def/claim-def.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClaimDefComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ClaimDefComponent = (function () {
+    function ClaimDefComponent() {
+    }
+    ClaimDefComponent.prototype.ngOnInit = function () {
+    };
+    return ClaimDefComponent;
+}());
+ClaimDefComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'claim-def',
+        template: __webpack_require__("../../../../../src/app/components/claim-management/claim-def/claim-def.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/claim-management/claim-def/claim-def.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ClaimDefComponent);
+
+//# sourceMappingURL=claim-def.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim-management.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim-management.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n    <h2 class=\"text-danger\">Claim Management</h2> \n    <h3>My DID <span class=\"label label-default\">{{myDID}}</span></h3> \n    <br><br>\n            <div class=\"row\">\n                <div class=\"col-sm-4\">\n            \n                        <div class=\"panel panel-danger\">\n                                <div class=\"panel-heading\">Creat Claim Definition</div>\n                                <div class=\"panel-body\">\n                                    \n                                        <form>\n                                                <div class=\"form-group\">\n                                                  <label for=\"from\">From:</label>\n                                                  <span>{{myShortName}}</span>\n                                                </div>\n                                                <div class=\"form-group\">\n                                                    <label for=\"fromDID\">From DID:</label>\n                                                </div>\n\n                                                <div class=\"form-group\">\n                                                    <label for=\"claimDef\">Claim Def:</label>\n                                                    <textarea row=\"5\" class=\"form-control\" id=\"claimDef\"></textarea>\n                                                </div>\n                                                <button type=\"submit\" class=\"btn btn-danger\">Setup</button>\n                                        </form>\n                                </div>\n                        </div>\n                </div>\n    \n                <div class=\"col-sm-8\">\n                        \n                        \n                        <claim-def></claim-def>\n                        <claim-req></claim-req>\n                        <claim></claim>\n                </div>\n            \n          </div> \n    </div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim-management.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClaimManagementComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ClaimManagementComponent = (function () {
+    function ClaimManagementComponent() {
+    }
+    ClaimManagementComponent.prototype.ngOnInit = function () {
+    };
+    return ClaimManagementComponent;
+}());
+ClaimManagementComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'claim-management',
+        template: __webpack_require__("../../../../../src/app/components/claim-management/claim-management.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/claim-management/claim-management.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ClaimManagementComponent);
+
+//# sourceMappingURL=claim-management.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim-req/claim-req.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim-req/claim-req.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-danger\">\n    <div class=\"panel-heading\">Pending Claim Requests</div>\n    <div class=\"panel-body\">       \n    <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                <th>To</th>\n                <th>Claim Def</th>\n                <th>Create Date</th>\n                <th>Action</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let peer of peers\">\n                \n                <td>{{peer.x500Name}}</td>\n                <td>{{peer.sovrinDID}}</td>\n                </tr>\n                \n            </tbody>\n            </table>\n        </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim-req/claim-req.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClaimReqComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ClaimReqComponent = (function () {
+    function ClaimReqComponent() {
+    }
+    ClaimReqComponent.prototype.ngOnInit = function () {
+    };
+    return ClaimReqComponent;
+}());
+ClaimReqComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'claim-req',
+        template: __webpack_require__("../../../../../src/app/components/claim-management/claim-req/claim-req.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/claim-management/claim-req/claim-req.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ClaimReqComponent);
+
+//# sourceMappingURL=claim-req.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim/claim.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim/claim.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-danger\">\n    <div class=\"panel-heading\">Previous Claims</div>\n    <div class=\"panel-body\">       \n    <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                <th>Issued To</th>\n                <th>Claim Def</th>\n                <th>Create Date</th>\n                <th>Action</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let peer of peers\">\n                \n                <td>{{peer.x500Name}}</td>\n                <td>{{peer.sovrinDID}}</td>\n                </tr>\n                \n            </tbody>\n            </table>\n        </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/claim-management/claim/claim.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClaimComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ClaimComponent = (function () {
+    function ClaimComponent() {
+    }
+    ClaimComponent.prototype.ngOnInit = function () {
+    };
+    return ClaimComponent;
+}());
+ClaimComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'claim',
+        template: __webpack_require__("../../../../../src/app/components/claim-management/claim/claim.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/claim-management/claim/claim.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ClaimComponent);
+
+//# sourceMappingURL=claim.component.js.map
 
 /***/ }),
 
@@ -317,6 +591,250 @@ var _a, _b, _c;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/proof-management/proof-management.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proof-management.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n    <h2 class=\"text-danger\">Proof Management</h2> \n    <h3>My DID <span class=\"label label-default\">{{myDID}}</span></h3> \n    <br><br>\n            <div class=\"row\">\n                <div class=\"col-sm-4\">\n            \n                        <div class=\"panel panel-danger\">\n                                <div class=\"panel-heading\">Creat Proof Request</div>\n                                <div class=\"panel-body\">\n                                    \n                                        <form>\n                                                <div class=\"form-group\">\n                                                  <label for=\"from\">From:</label>\n                                                  <span>{{myShortName}}</span>\n                                                </div>\n                                                <div class=\"form-group\">\n                                                    <label for=\"fromDID\">To DID:</label>\n                                                </div>\n\n                                                <div class=\"form-group\">\n                                                    <label for=\"claimDef\">Proof Def:</label>\n                                                    <textarea row=\"5\" class=\"form-control\" id=\"claimDef\"></textarea>\n                                                </div>\n                                                <button type=\"submit\" class=\"btn btn-danger\">Create</button>\n                                        </form>\n                                </div>\n                        </div>\n                </div>\n    \n                <div class=\"col-sm-8\">\n                        \n                        \n                        <proofs-issued></proofs-issued>\n                        <proofs-received></proofs-received>\n                        <proofs-requested></proofs-requested>\n                </div>\n            \n          </div> \n    </div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proof-management.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProofManagementComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ProofManagementComponent = (function () {
+    function ProofManagementComponent() {
+    }
+    ProofManagementComponent.prototype.ngOnInit = function () {
+    };
+    return ProofManagementComponent;
+}());
+ProofManagementComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'proof-management',
+        template: __webpack_require__("../../../../../src/app/components/proof-management/proof-management.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/proof-management/proof-management.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ProofManagementComponent);
+
+//# sourceMappingURL=proof-management.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proofs-issued/proofs-issued.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proofs-issued/proofs-issued.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-danger\">\n    <div class=\"panel-heading\">Proof Issued</div>\n    <div class=\"panel-body\">       \n    <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                <th>To</th>\n                <th>Proof Def</th>\n                <th>Date</th>\n                <th>Action</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let peer of peers\">\n                \n                <td>{{peer.x500Name}}</td>\n                <td>{{peer.sovrinDID}}</td>\n                </tr>\n                \n            </tbody>\n            </table>\n        </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proofs-issued/proofs-issued.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProofsIssuedComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ProofsIssuedComponent = (function () {
+    function ProofsIssuedComponent() {
+    }
+    ProofsIssuedComponent.prototype.ngOnInit = function () {
+    };
+    return ProofsIssuedComponent;
+}());
+ProofsIssuedComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'proofs-issued',
+        template: __webpack_require__("../../../../../src/app/components/proof-management/proofs-issued/proofs-issued.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/proof-management/proofs-issued/proofs-issued.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ProofsIssuedComponent);
+
+//# sourceMappingURL=proofs-issued.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proofs-received/proofs-received.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proofs-received/proofs-received.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-danger\">\n    <div class=\"panel-heading\">Proofs Received</div>\n    <div class=\"panel-body\">       \n    <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                <th>From</th>\n                <th>Proof Def</th>\n                <th>Date</th>\n                <th>Action</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let peer of peers\">\n                \n                <td>{{peer.x500Name}}</td>\n                <td>{{peer.sovrinDID}}</td>\n                </tr>\n                \n            </tbody>\n            </table>\n        </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proofs-received/proofs-received.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProofsReceivedComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ProofsReceivedComponent = (function () {
+    function ProofsReceivedComponent() {
+    }
+    ProofsReceivedComponent.prototype.ngOnInit = function () {
+    };
+    return ProofsReceivedComponent;
+}());
+ProofsReceivedComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'proofs-received',
+        template: __webpack_require__("../../../../../src/app/components/proof-management/proofs-received/proofs-received.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/proof-management/proofs-received/proofs-received.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ProofsReceivedComponent);
+
+//# sourceMappingURL=proofs-received.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proofs-requested/proofs-requested.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proofs-requested/proofs-requested.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-danger\">\n    <div class=\"panel-heading\">Proofs Requested</div>\n    <div class=\"panel-body\">       \n    <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                <th>To</th>\n                <th>Proof Def</th>\n                <th>Date</th>\n                <th>Action</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let peer of peers\">\n                \n                <td>{{peer.x500Name}}</td>\n                <td>{{peer.sovrinDID}}</td>\n                </tr>\n                \n            </tbody>\n            </table>\n        </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/proof-management/proofs-requested/proofs-requested.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProofsRequestedComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ProofsRequestedComponent = (function () {
+    function ProofsRequestedComponent() {
+    }
+    ProofsRequestedComponent.prototype.ngOnInit = function () {
+    };
+    return ProofsRequestedComponent;
+}());
+ProofsRequestedComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'proofs-requested',
+        template: __webpack_require__("../../../../../src/app/components/proof-management/proofs-requested/proofs-requested.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/proof-management/proofs-requested/proofs-requested.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ProofsRequestedComponent);
+
+//# sourceMappingURL=proofs-requested.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/trust-management/trust-management.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -338,7 +856,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/trust-management/trust-management.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n<h3>My DID <span class=\"label label-default\">{{myDID}}</span></h3> \n<br><br>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n        \n                    <div class=\"panel panel-default\">\n                            <div class=\"panel-heading\">Setup Trust</div>\n                            <div class=\"panel-body\">\n                                \n                                    <form>\n                                            <div class=\"form-group\">\n                                              <label for=\"otherPartyDID\">Other Party DID:</label>\n                                              <input class=\"form-control\" id=\"otherPartyDID\">\n                                            </div>\n                                        \n                                            <button type=\"submit\" class=\"btn btn-default\">Setup</button>\n                                    </form>\n                            </div>\n                    </div>\n            </div>\n\n            <div class=\"col-sm-8\">\n                    \n                    \n                    <trust title=\"Pending Trusts From Me\"></trust>\n                    <trust title=\"Pending Trusts From Others\"></trust>\n                    <trust title=\"Established Trusts\"></trust>\n            </div>\n        \n      </div> \n</div>"
+module.exports = "<div class=\"container\">\n<h2 class=\"text-danger\">Trust Management</h2> \n<h3>My DID <span class=\"label label-default\">{{myDID}}</span></h3> \n<br><br>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n        \n                    <div class=\"panel panel-danger\">\n                            <div class=\"panel-heading\">Setup Trust</div>\n                            <div class=\"panel-body\">\n                                \n                                    <form>\n                                            <div class=\"form-group\">\n                                              <label for=\"otherPartyDID\">Other Party DID:</label>\n                                              <input class=\"form-control\" id=\"otherPartyDID\">\n                                            </div>\n                                        \n                                            <button type=\"submit\" class=\"btn btn-danger\">Setup</button>\n                                    </form>\n                            </div>\n                    </div>\n            </div>\n\n            <div class=\"col-sm-8\">\n                    \n                    \n                    <trust title=\"Pending Trusts From Me\"></trust>\n                    <trust title=\"Pending Trusts From Others\"></trust>\n                    <trust title=\"Established Trusts\"></trust>\n            </div>\n        \n      </div> \n</div>"
 
 /***/ }),
 
@@ -440,7 +958,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/trust-management/trust/trust.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-default\">\n    <div class=\"panel-heading\">{{title}}</div>\n    <div class=\"panel-body\">       \n    <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                <th>Name</th>\n                <th>Sovrin DID</th>\n                <th>Date</th>\n                <th>Action</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let peer of peers\">\n                \n                <td>{{peer.x500Name}}</td>\n                <td>{{peer.sovrinDID}}</td>\n                </tr>\n                \n            </tbody>\n            </table>\n        </div>\n</div>"
+module.exports = "<div class=\"panel panel-danger\">\n    <div class=\"panel-heading\">{{title}}</div>\n    <div class=\"panel-body\">       \n    <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                <th>Name</th>\n                <th>Sovrin DID</th>\n                <th>Date</th>\n                <th>Action</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let peer of peers\">\n                \n                <td>{{peer.x500Name}}</td>\n                <td>{{peer.sovrinDID}}</td>\n                </tr>\n                \n            </tbody>\n            </table>\n        </div>\n</div>"
 
 /***/ }),
 
@@ -524,7 +1042,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/left-nav-bar/left-nav-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-sidenav\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span> \n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Corda-Sovrin</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li [routerLinkActive]=\"['active']\"><a href=\"#\"><i class=\"fa fa-telegram\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a href=\"#\"><i class=\"fa fa-cog\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['networkmap']\"><i class=\"fa fa-users\" title=\"Peers\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['trust']\"><i class=\"fa fa-handshake-o\" title=\"Trust Management\"></i></a> </li>\n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> {{meShort}}</a></li>\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\n        </ul>\n    </div>\n  </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-sidenav\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span> \n      </button>\n      <a class=\"navbar-brand\" href=\"#\"><span><img src=\"favicon.png\"></span><span><img src=\"assets/sovrin.png\" style=\"width:20px\"></span></a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['networkmap']\"><i class=\"fa fa-users\" title=\"Peers\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['trust']\"><i class=\"fa fa-handshake-o\" title=\"Trust Management\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['claim']\"><i class=\"fa fa-id-card-o\" title=\"Claim Management\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['proof']\"><i class=\"fa fa-send-o\" title=\"Claim/Proof Management\"></i></a> </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> {{meShort}}</a></li>\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\n        </ul>\n    </div>\n  </div>\n</nav>"
 
 /***/ }),
 

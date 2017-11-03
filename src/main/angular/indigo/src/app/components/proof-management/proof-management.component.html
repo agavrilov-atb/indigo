@@ -1,0 +1,40 @@
+<div class="container">
+    <h2 class="text-danger">Proof Management</h2> 
+    <h3>My DID <span class="label label-default">{{myDID}}</span></h3> 
+    <br><br>
+            <div class="row">
+                <div class="col-sm-4">
+            
+                        <div class="panel panel-danger">
+                                <div class="panel-heading">Creat Proof Request</div>
+                                <div class="panel-body">
+                                    
+                                        <form>
+                                                <div class="form-group">
+                                                  <label for="from">From:</label>
+                                                  <span>{{myShortName}}</span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="fromDID">To DID:</label>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="claimDef">Proof Def:</label>
+                                                    <textarea row="5" class="form-control" id="claimDef"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-danger">Create</button>
+                                        </form>
+                                </div>
+                        </div>
+                </div>
+    
+                <div class="col-sm-8">
+                        
+                        
+                        <proofs-issued></proofs-issued>
+                        <proofs-received></proofs-received>
+                        <proofs-requested></proofs-requested>
+                </div>
+            
+          </div> 
+    </div>

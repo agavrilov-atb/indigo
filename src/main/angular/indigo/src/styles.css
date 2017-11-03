@@ -8,3 +8,20 @@
     background-color: red;
     color:white;
 }
+
+.panel-heading{
+    font-weight: bold;
+    font-size:15px;
+}
+.panel-danger>.panel-heading{
+   background:#d9534f;
+   color:#fff;
+   border-color: #d9534f;
+   
+}
+.text-danger{
+    color:#d9534f;
+}
+body{
+    background-color:#f5f5f5
+}
