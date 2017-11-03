@@ -50,13 +50,19 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
     private val myKey = services.myInfo.legalIdentities.first().owningKey
     val parser = Parser()
 
+    /**
+     *  TODO: This attributes should come from client.
+     *  - Client should make the createWallet call and should maintain its wallet
+     *  - Once the wallet is created it should provide DID,Verkey & Seed
+     *
+     */
     private val issuerWalletName = "issuerWallet"
     private val proverWalletName = "proverWallet"
 
     private val issuerDid = "W4SGRU86Z58d6TV7PBUe6g"
-    private val proverDid = "V4SGRU86Z58d6TV7PBUe6f"
-    private val proverVerkey = "GJ1SzoWzavQYfNL9XkaJdrQejfztN4XqdsiV4ct3LXKL"
-    private val proverSeed = "000000000000000000000000Trustee1"
+    private val proverDid = "USysKJheVEwjkZTZW2uHo4"
+    private val proverVerkey = "~RJVdKmy1QiSPCkwNSA7MqL"
+    private val proverSeed = "r3TestTrustAnchor000000000000000"
 
 
     fun generateDID(): String {
@@ -138,6 +144,13 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
         return claimDef
     }
 
+    /**
+     * Master secret to encrypt the proof request (like Salt in cryptography)
+     * - Belongs to Prover
+     * - Unique per proof
+     * - Randomly generated (UUID)
+     *
+     */
     fun establishMasterSecret(masterSecret: String) {
         println("=== BEGIN SCHEMA CREATION ===")
         initializeSovrin()
