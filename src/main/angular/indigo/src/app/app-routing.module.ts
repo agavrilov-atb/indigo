@@ -1,3 +1,4 @@
+import { WalletManagementComponent } from './components/wallet-management/wallet-management.component';
 import { ProofManagementComponent } from './components/proof-management/proof-management.component';
 import { ClaimManagementComponent } from './components/claim-management/claim-management.component';
 import { TrustManagementComponent } from './components/trust-management/trust-management.component';
@@ -7,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import {Router,Routes, RouterModule} from '@angular/router'
 
 const APP_ROUTES: Routes = [
+  { path: 'wallet', component:WalletManagementComponent},
   { path: 'networkmap', component:NetworkMapComponent},
   { path: 'trust', component:TrustManagementComponent},
   { path: 'claim', component:ClaimManagementComponent},

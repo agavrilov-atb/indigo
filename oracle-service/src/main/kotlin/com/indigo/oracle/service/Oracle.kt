@@ -62,7 +62,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
     private val issuerDid = "W4SGRU86Z58d6TV7PBUe6g"
     private val proverDid = "USysKJheVEwjkZTZW2uHo4"
     private val proverVerkey = "~RJVdKmy1QiSPCkwNSA7MqL"
-    private val proverSeed = "r3TestTrustAnchor000000000000000"
+    private val proverSeed = "r3TestTrustAnchor00000000000000"
 
 
     fun generateDID(): String {
@@ -88,7 +88,7 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
             val newVerkey = createAndStoreMyDidResultTrustee.verkey
 
             println("=== CREATE NYM REQUEST ===")
-            val buildNymRequestResult = Ledger.buildNymRequest(proverDid, this.issuerDid, proverVerkey, null, null).get()
+            val buildNymRequestResult = Ledger.buildNymRequest(proverDid, newDid, newVerkey, null, null).get()
             println("BuildNymRequestResult: " + buildNymRequestResult)
 
             println("=== SUBMIT ===")

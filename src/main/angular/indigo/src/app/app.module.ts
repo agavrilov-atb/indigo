@@ -1,3 +1,4 @@
+import { WalletService } from './components/wallet-management/service/wallet.service';
 import { AppRoutingModule } from './app-routing.module';
 import { CustomOption } from './shared/custom-toaster';
 import { ToastOptions } from 'ng2-toastr';
@@ -60,6 +61,7 @@ import { ClaimReqComponent } from './components/claim-management/claim-req/claim
 import { ProofsIssuedComponent } from './components/proof-management/proofs-issued/proofs-issued.component';
 import { ProofsRequestedComponent } from './components/proof-management/proofs-requested/proofs-requested.component';
 import { ProofsReceivedComponent } from './components/proof-management/proofs-received/proofs-received.component';
+import { WalletManagementComponent } from './components/wallet-management/wallet-management.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +76,8 @@ import { ProofsReceivedComponent } from './components/proof-management/proofs-re
     ClaimReqComponent,
     ProofsIssuedComponent,
     ProofsRequestedComponent,
-    ProofsReceivedComponent
+    ProofsReceivedComponent,
+    WalletManagementComponent
   ],
   imports: [
     ToastModule.forRoot(),
@@ -120,7 +123,7 @@ import { ProofsReceivedComponent } from './components/proof-management/proofs-re
     AppRoutingModule
     
   ],
-  providers: [IndigoService, {provide: ToastOptions, useClass: CustomOption}],
+  providers: [WalletService,IndigoService, {provide: ToastOptions, useClass: CustomOption}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

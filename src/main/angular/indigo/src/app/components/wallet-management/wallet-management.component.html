@@ -1,0 +1,26 @@
+<div class="container">
+    <h2 class="text-danger">Wallet Management</h2> 
+    <br><br><br>
+
+    <button type="submit" class="btn btn-danger" (click) ="onSetupWallet()">Setup Wallet</button>
+    
+    <div *ngIf="wallet">
+
+        <h3>Wallet Name: <span>{{wallet.name}}</span></h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                   <th>Stored DIDs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let did of wallet.storedDIDs">
+                
+                <td>{{did}}</td>
+                </tr>
+                
+            </tbody>
+            </table>
+    </div>
+  
+</div>    

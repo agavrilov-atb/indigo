@@ -14,9 +14,9 @@ import net.corda.core.serialization.CordaSerializable
 
 @CordaSerializable
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-enum class IndigoNode(val x500Name: CordaX500Name,val sovrinDID:String) {
+enum class IndigoNode(val x500Name: CordaX500Name,val sovrinDID:String, sovrinWalletName :String?=null) {
 
-    NODE_A(CordaX500Name(organisation = "PartyA", locality = "London" , country = "GB"),"DID_NODE_A"),
+    NODE_A(x500Name = CordaX500Name(organisation = "PartyA", locality = "London" , country = "GB"),sovrinDID = "DID_NODE_A"),
     NODE_B(CordaX500Name(organisation = "Oracle", locality = "New York" , country = "US"),"DID_NODE_B"),
     NODE_C(CordaX500Name(organisation = "Controller", locality = "London" , country = "GB"),"DID_NODE_C");
 
@@ -28,6 +28,23 @@ enum class IndigoNode(val x500Name: CordaX500Name,val sovrinDID:String) {
         fun getIndigoNode(x500Name: CordaX500Name): IndigoNode = IndigoNode.values().filter { it.x500Name.equals(x500Name) }.first()
     }
 
+    var sovrinWalletName:String = this.x500Name.organisation
+            set(value){
+                if(sovrinWalletName != null){
+                    field = sovrinWalletName
+                }else{
+                    field = value
+                }
+
+            }
+            get(){
+                if(field == null){
+                    return this.x500Name.organisation
+                }else{
+                    return field
+                }
+            }
+
 }
 
 /**
@@ -36,3 +53,4 @@ enum class IndigoNode(val x500Name: CordaX500Name,val sovrinDID:String) {
 public fun NodeInfo.config(): IndigoNode {
     return IndigoNode.getIndigoNode(this.legalIdentities.first().name)
 }
+

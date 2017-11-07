@@ -11,3 +11,9 @@ export class Peer{
   sovrinDID:string
 
 }
+
+export class Wallet{
+
+  name:string
+  storedDIDs:string[]
+}

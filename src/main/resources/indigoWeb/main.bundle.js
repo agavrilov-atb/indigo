@@ -22,12 +22,13 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_proof_management_proof_management_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proof-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_claim_management_claim_management_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_trust_management_trust_management_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_wallet_management_wallet_management_component__ = __webpack_require__("../../../../../src/app/components/wallet-management/wallet-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_proof_management_proof_management_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proof-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_claim_management_claim_management_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_trust_management_trust_management_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -40,11 +41,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var APP_ROUTES = [
-    { path: 'networkmap', component: __WEBPACK_IMPORTED_MODULE_3__components_network_map_network_map_component__["a" /* NetworkMapComponent */] },
-    { path: 'trust', component: __WEBPACK_IMPORTED_MODULE_2__components_trust_management_trust_management_component__["a" /* TrustManagementComponent */] },
-    { path: 'claim', component: __WEBPACK_IMPORTED_MODULE_1__components_claim_management_claim_management_component__["a" /* ClaimManagementComponent */] },
-    { path: 'proof', component: __WEBPACK_IMPORTED_MODULE_0__components_proof_management_proof_management_component__["a" /* ProofManagementComponent */] },
+    { path: 'wallet', component: __WEBPACK_IMPORTED_MODULE_0__components_wallet_management_wallet_management_component__["a" /* WalletManagementComponent */] },
+    { path: 'networkmap', component: __WEBPACK_IMPORTED_MODULE_4__components_network_map_network_map_component__["a" /* NetworkMapComponent */] },
+    { path: 'trust', component: __WEBPACK_IMPORTED_MODULE_3__components_trust_management_trust_management_component__["a" /* TrustManagementComponent */] },
+    { path: 'claim', component: __WEBPACK_IMPORTED_MODULE_2__components_claim_management_claim_management_component__["a" /* ClaimManagementComponent */] },
+    { path: 'proof', component: __WEBPACK_IMPORTED_MODULE_1__components_proof_management_proof_management_component__["a" /* ProofManagementComponent */] },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -52,9 +55,9 @@ var AppRoutingModule = (function () {
     return AppRoutingModule;
 }());
 AppRoutingModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["NgModule"])({
-        imports: [__WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* RouterModule */].forRoot(APP_ROUTES)],
-        exports: [__WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* RouterModule */]]
+    Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["NgModule"])({
+        imports: [__WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* RouterModule */].forRoot(APP_ROUTES)],
+        exports: [__WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* RouterModule */]]
     })
 ], AppRoutingModule);
 
@@ -123,34 +126,36 @@ AppComponent = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_custom_toaster__ = __webpack_require__("../../../../../src/app/shared/custom-toaster.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ng2_toastr__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_indigo_service__ = __webpack_require__("../../../../../src/app/shared/services/indigo.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__left_nav_bar_left_nav_bar_component__ = __webpack_require__("../../../../../src/app/left-nav-bar/left-nav-bar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_cdk_table__ = __webpack_require__("../../../cdk/esm5/table.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_trust_management_trust_management_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_trust_management_trust_trust_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust/trust.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_claim_management_claim_management_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_proof_management_proof_management_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proof-management.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_claim_management_claim_claim_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim/claim.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_claim_management_claim_def_claim_def_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-def/claim-def.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_claim_management_claim_req_claim_req_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-req/claim-req.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_proof_management_proofs_issued_proofs_issued_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proofs-issued/proofs-issued.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_proof_management_proofs_requested_proofs_requested_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proofs-requested/proofs-requested.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_proof_management_proofs_received_proofs_received_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proofs-received/proofs-received.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_wallet_management_service_wallet_service__ = __webpack_require__("../../../../../src/app/components/wallet-management/service/wallet.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_custom_toaster__ = __webpack_require__("../../../../../src/app/shared/custom-toaster.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng2_toastr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_toastr_ng2_toastr__ = __webpack_require__("../../../../ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_toastr_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_toastr_ng2_toastr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_indigo_service__ = __webpack_require__("../../../../../src/app/shared/services/indigo.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__left_nav_bar_left_nav_bar_component__ = __webpack_require__("../../../../../src/app/left-nav-bar/left-nav-bar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__angular_cdk_table__ = __webpack_require__("../../../cdk/esm5/table.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_network_map_network_map_component__ = __webpack_require__("../../../../../src/app/components/network-map/network-map.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_trust_management_trust_management_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_trust_management_trust_trust_component__ = __webpack_require__("../../../../../src/app/components/trust-management/trust/trust.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_claim_management_claim_management_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_proof_management_proof_management_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proof-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_claim_management_claim_claim_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim/claim.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_claim_management_claim_def_claim_def_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-def/claim-def.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_claim_management_claim_req_claim_req_component__ = __webpack_require__("../../../../../src/app/components/claim-management/claim-req/claim-req.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_proof_management_proofs_issued_proofs_issued_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proofs-issued/proofs-issued.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_proof_management_proofs_requested_proofs_requested_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proofs-requested/proofs-requested.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_proof_management_proofs_received_proofs_received_component__ = __webpack_require__("../../../../../src/app/components/proof-management/proofs-received/proofs-received.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_wallet_management_wallet_management_component__ = __webpack_require__("../../../../../src/app/components/wallet-management/wallet-management.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -183,73 +188,76 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var AppModule = (function () {
     function AppModule() {
     }
     return AppModule;
 }());
 AppModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_8__angular_core__["NgModule"])({
+    Object(__WEBPACK_IMPORTED_MODULE_9__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__left_nav_bar_left_nav_bar_component__["a" /* LeftNavBarComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__components_network_map_network_map_component__["a" /* NetworkMapComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__components_trust_management_trust_management_component__["a" /* TrustManagementComponent */],
-            __WEBPACK_IMPORTED_MODULE_17__components_trust_management_trust_trust_component__["a" /* TrustComponent */],
-            __WEBPACK_IMPORTED_MODULE_18__components_claim_management_claim_management_component__["a" /* ClaimManagementComponent */],
-            __WEBPACK_IMPORTED_MODULE_19__components_proof_management_proof_management_component__["a" /* ProofManagementComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__components_claim_management_claim_claim_component__["a" /* ClaimComponent */],
-            __WEBPACK_IMPORTED_MODULE_21__components_claim_management_claim_def_claim_def_component__["a" /* ClaimDefComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__components_claim_management_claim_req_claim_req_component__["a" /* ClaimReqComponent */],
-            __WEBPACK_IMPORTED_MODULE_23__components_proof_management_proofs_issued_proofs_issued_component__["a" /* ProofsIssuedComponent */],
-            __WEBPACK_IMPORTED_MODULE_24__components_proof_management_proofs_requested_proofs_requested_component__["a" /* ProofsRequestedComponent */],
-            __WEBPACK_IMPORTED_MODULE_25__components_proof_management_proofs_received_proofs_received_component__["a" /* ProofsReceivedComponent */]
+            __WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__left_nav_bar_left_nav_bar_component__["a" /* LeftNavBarComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__components_network_map_network_map_component__["a" /* NetworkMapComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__components_trust_management_trust_management_component__["a" /* TrustManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__components_trust_management_trust_trust_component__["a" /* TrustComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__components_claim_management_claim_management_component__["a" /* ClaimManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__components_proof_management_proof_management_component__["a" /* ProofManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__components_claim_management_claim_claim_component__["a" /* ClaimComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__components_claim_management_claim_def_claim_def_component__["a" /* ClaimDefComponent */],
+            __WEBPACK_IMPORTED_MODULE_23__components_claim_management_claim_req_claim_req_component__["a" /* ClaimReqComponent */],
+            __WEBPACK_IMPORTED_MODULE_24__components_proof_management_proofs_issued_proofs_issued_component__["a" /* ProofsIssuedComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__components_proof_management_proofs_requested_proofs_requested_component__["a" /* ProofsRequestedComponent */],
+            __WEBPACK_IMPORTED_MODULE_26__components_proof_management_proofs_received_proofs_received_component__["a" /* ProofsReceivedComponent */],
+            __WEBPACK_IMPORTED_MODULE_27__components_wallet_management_wallet_management_component__["a" /* WalletManagementComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__["ToastModule"].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser__["BrowserModule"],
-            __WEBPACK_IMPORTED_MODULE_10__angular_http__["c" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_9__angular_forms__["c" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["a" /* MatAutocompleteModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["b" /* MatButtonModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["c" /* MatButtonToggleModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["d" /* MatCardModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["e" /* MatCheckboxModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["f" /* MatChipsModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["g" /* MatDatepickerModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["h" /* MatDialogModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["i" /* MatExpansionModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["k" /* MatGridListModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["l" /* MatIconModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["m" /* MatInputModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["n" /* MatListModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["o" /* MatMenuModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["p" /* MatNativeDateModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["r" /* MatPaginatorModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["s" /* MatProgressBarModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["t" /* MatProgressSpinnerModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["u" /* MatRadioModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["v" /* MatRippleModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["w" /* MatSelectModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["x" /* MatSidenavModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["z" /* MatSliderModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["y" /* MatSlideToggleModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["A" /* MatSnackBarModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["B" /* MatSortModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["D" /* MatTableModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["E" /* MatTabsModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["F" /* MatToolbarModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["G" /* MatTooltipModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["q" /* MatOptionModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["j" /* MatFormFieldModule */],
-            __WEBPACK_IMPORTED_MODULE_13__angular_material__["C" /* MatStepperModule */],
-            __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_14__angular_cdk_table__["m" /* CdkTableModule */],
-            __WEBPACK_IMPORTED_MODULE_0__app_routing_module__["a" /* AppRoutingModule */]
+            __WEBPACK_IMPORTED_MODULE_5_ng2_toastr_ng2_toastr__["ToastModule"].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_8__angular_platform_browser__["BrowserModule"],
+            __WEBPACK_IMPORTED_MODULE_11__angular_http__["c" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_10__angular_forms__["c" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["a" /* MatAutocompleteModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["b" /* MatButtonModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["c" /* MatButtonToggleModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["d" /* MatCardModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["e" /* MatCheckboxModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["f" /* MatChipsModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["g" /* MatDatepickerModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["h" /* MatDialogModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["i" /* MatExpansionModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["k" /* MatGridListModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["l" /* MatIconModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["m" /* MatInputModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["n" /* MatListModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["o" /* MatMenuModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["p" /* MatNativeDateModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["r" /* MatPaginatorModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["s" /* MatProgressBarModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["t" /* MatProgressSpinnerModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["u" /* MatRadioModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["v" /* MatRippleModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["w" /* MatSelectModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["x" /* MatSidenavModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["z" /* MatSliderModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["y" /* MatSlideToggleModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["A" /* MatSnackBarModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["B" /* MatSortModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["D" /* MatTableModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["E" /* MatTabsModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["F" /* MatToolbarModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["G" /* MatTooltipModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["q" /* MatOptionModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["j" /* MatFormFieldModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_material__["C" /* MatStepperModule */],
+            __WEBPACK_IMPORTED_MODULE_12__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+            __WEBPACK_IMPORTED_MODULE_15__angular_cdk_table__["m" /* CdkTableModule */],
+            __WEBPACK_IMPORTED_MODULE_1__app_routing_module__["a" /* AppRoutingModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_5__shared_services_indigo_service__["a" /* IndigoService */], { provide: __WEBPACK_IMPORTED_MODULE_2_ng2_toastr__["ToastOptions"], useClass: __WEBPACK_IMPORTED_MODULE_1__shared_custom_toaster__["a" /* CustomOption */] }],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* AppComponent */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_0__components_wallet_management_service_wallet_service__["a" /* WalletService */], __WEBPACK_IMPORTED_MODULE_6__shared_services_indigo_service__["a" /* IndigoService */], { provide: __WEBPACK_IMPORTED_MODULE_3_ng2_toastr__["ToastOptions"], useClass: __WEBPACK_IMPORTED_MODULE_2__shared_custom_toaster__["a" /* CustomOption */] }],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -1002,6 +1010,129 @@ TrustComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/wallet-management/service/wallet.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WalletService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__("../../../../../src/app/utils.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__("../../../../../src/app/config.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var WalletService = (function () {
+    function WalletService(http) {
+        this.http = http;
+    }
+    WalletService.prototype.setupWallet = function () {
+        debugger;
+        var req = __WEBPACK_IMPORTED_MODULE_0__utils__["a" /* Utils */].postHttpRequest(__WEBPACK_IMPORTED_MODULE_4__config__["a" /* Constants */].baseUrl + '/api/com.indigo/setupWallet', null);
+        return this.http.request(req)
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) {
+            return __WEBPACK_IMPORTED_MODULE_0__utils__["a" /* Utils */].handleError(error);
+        });
+    };
+    return WalletService;
+}());
+WalletService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], WalletService);
+
+var _a;
+//# sourceMappingURL=wallet.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/wallet-management/wallet-management.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/wallet-management/wallet-management.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n    <h2 class=\"text-danger\">Wallet Management</h2> \n    <br><br><br>\n\n    <button type=\"submit\" class=\"btn btn-danger\" (click) =\"onSetupWallet()\">Setup Wallet</button>\n    \n    <div *ngIf=\"wallet\">\n\n        <h3>Wallet Name: <span>{{wallet.name}}</span></h3>\n        <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                   <th>Stored DIDs</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let did of wallet.storedDIDs\">\n                \n                <td>{{did}}</td>\n                </tr>\n                \n            </tbody>\n            </table>\n    </div>\n  \n</div>    "
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/wallet-management/wallet-management.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WalletManagementComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__service_wallet_service__ = __webpack_require__("../../../../../src/app/components/wallet-management/service/wallet.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var WalletManagementComponent = (function () {
+    function WalletManagementComponent(walletService) {
+        this.walletService = walletService;
+    }
+    WalletManagementComponent.prototype.ngOnInit = function () {
+    };
+    WalletManagementComponent.prototype.onSetupWallet = function () {
+        var _this = this;
+        this.walletService.setupWallet().then(function (data) {
+            console.log(data);
+            _this.wallet = data;
+        });
+    };
+    return WalletManagementComponent;
+}());
+WalletManagementComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
+        selector: 'wallet-management',
+        template: __webpack_require__("../../../../../src/app/components/wallet-management/wallet-management.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/wallet-management/wallet-management.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__service_wallet_service__["a" /* WalletService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__service_wallet_service__["a" /* WalletService */]) === "function" && _a || Object])
+], WalletManagementComponent);
+
+var _a;
+//# sourceMappingURL=wallet-management.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/config.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1042,7 +1173,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/left-nav-bar/left-nav-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-sidenav\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span> \n      </button>\n      <a class=\"navbar-brand\" href=\"#\"><span><img src=\"favicon.png\"></span><span><img src=\"assets/sovrin.png\" style=\"width:20px\"></span></a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['networkmap']\"><i class=\"fa fa-users\" title=\"Peers\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['trust']\"><i class=\"fa fa-handshake-o\" title=\"Trust Management\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['claim']\"><i class=\"fa fa-id-card-o\" title=\"Claim Management\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['proof']\"><i class=\"fa fa-send-o\" title=\"Claim/Proof Management\"></i></a> </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> {{meShort}}</a></li>\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\n        </ul>\n    </div>\n  </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-sidenav\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span> \n      </button>\n      <a class=\"navbar-brand\" href=\"#\"><span><img src=\"favicon.png\"></span><span><img src=\"assets/sovrin.png\" style=\"width:20px\"></span></a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['networkmap']\"><i class=\"fa fa-users\" title=\"Peers\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['wallet']\"><i class=\"fa fa-cog\" title=\"Settings\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['trust']\"><i class=\"fa fa-handshake-o\" title=\"Trust Management\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['claim']\"><i class=\"fa fa-id-card-o\" title=\"Claim Management\"></i></a> </li>\n        <li [routerLinkActive]=\"['active']\"><a [routerLink]=\"['proof']\"><i class=\"fa fa-send-o\" title=\"Claim/Proof Management\"></i></a> </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> {{meShort}}</a></li>\n          <li><a href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\n        </ul>\n    </div>\n  </div>\n</nav>"
 
 /***/ }),
 
@@ -1303,6 +1434,17 @@ var Utils = (function () {
             method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestMethod */].Get,
             url: url,
             body: {}
+        });
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Request */](options);
+        return req;
+    };
+    Utils.postHttpRequest = function (url, body) {
+        var headers = this.getHeaders();
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* RequestOptions */]({
+            headers: headers,
+            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestMethod */].Post,
+            url: url,
+            body: body
         });
         var req = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Request */](options);
         return req;

@@ -25,6 +25,17 @@ export class Utils {
     const req = new Request(options);
     return req;
   }
+  static postHttpRequest(url,body): Request {
+    const headers = this.getHeaders();
+    const options = new RequestOptions({
+                                         headers: headers,
+                                         method: RequestMethod.Post,
+                                         url: url,
+                                         body: body
+                                       });
+    const req = new Request(options);
+    return req;
+  }
 
    static  getHeaders() {
     const headers = new Headers();
