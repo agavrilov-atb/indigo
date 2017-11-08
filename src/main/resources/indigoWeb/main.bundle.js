@@ -530,7 +530,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/network-map/network-map.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h2>Peers</h2>\n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th>Name</th>\n        \n            <th>Sovrin DID</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let peer of peers\">\n        \n          <td>{{peer.x500Name}}</td>\n          <td>{{peer.sovrinDID}}</td>\n        </tr>\n        \n      </tbody>\n    </table>\n  </div>\n  "
+module.exports = "<div class=\"container\">\n    <h2>Peers</h2>\n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th>Name</th>\n        \n            <th>Sovrin DID</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let peer of peers\">\n        \n          <td>{{peer.x500Name}}</td>\n          <td>{{peer.wallet.storedDIDs}}</td>\n        </tr>\n        \n      </tbody>\n    </table>\n  </div>\n  "
 
 /***/ }),
 
@@ -921,7 +921,7 @@ var TrustManagementComponent = (function (_super) {
     Object.defineProperty(TrustManagementComponent.prototype, "myDID", {
         get: function () {
             if (this.me) {
-                return this.me.me.sovrinDID;
+                return this.me.wallet.storedDIDs[0];
             }
         },
         enumerable: true,
@@ -1223,7 +1223,7 @@ var LeftNavBarComponent = (function (_super) {
     Object.defineProperty(LeftNavBarComponent.prototype, "meShort", {
         get: function () {
             if (this.myinfo) {
-                return __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].getShortName(this.myinfo.me.x500Name);
+                return __WEBPACK_IMPORTED_MODULE_1__utils__["a" /* Utils */].getShortName(this.myinfo.x500Name);
             }
         },
         enumerable: true,
@@ -1374,6 +1374,7 @@ var IndigoService = (function () {
             this.http.request(req)
                 .toPromise()
                 .then(function (res) {
+                console.log(res);
                 _this._me = res.json();
                 return _this._me;
             })

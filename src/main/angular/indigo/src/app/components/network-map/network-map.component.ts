@@ -1,4 +1,4 @@
-import { Peer } from './../../shared/models/corda-network';
+import { NodeInfo } from './../../shared/models/corda-network';
 import { ToastsManager } from 'ng2-toastr';
 import { AbstractComponent } from './../../shared/abstract-component';
 import { IndigoService } from './../../shared/services/indigo.service';
@@ -11,7 +11,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 })
 export class NetworkMapComponent extends AbstractComponent implements OnInit {
 
-  peers:Peer[]
+  peers:NodeInfo[]
   
   constructor(public indigoService: IndigoService,public toastr: ToastsManager
     , vcr: ViewContainerRef) {

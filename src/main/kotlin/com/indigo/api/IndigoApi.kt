@@ -1,7 +1,8 @@
 package com.indigo.api
 
+import com.indigo.api.data.SovrinNodeInfo
 import com.indigo.api.data.Wallet
-import com.indigo.config.IndigoNode
+import com.indigo.config.NodeConfig
 import com.indigo.config.config
 import net.corda.core.messaging.CordaRPCOps
 import net.corda.core.utilities.loggerFor
@@ -11,8 +12,12 @@ import javax.ws.rs.Path
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing
 
-
+@CrossOriginResourceSharing(allowAllOrigins = true,
+        allowOrigins = arrayOf("http://localhost:4200"),
+        allowHeaders = arrayOf("Access-Control-Allow-Origin", "content-type", "accept"),
+        exposeHeaders = arrayOf("Access-Control-Allow-Origin", "content-type", "accept"))
 @Path("com.indigo")
 class IndigoApi(val services: CordaRPCOps) {
     private val myNode = services.nodeInfo()
@@ -27,7 +32,9 @@ class IndigoApi(val services: CordaRPCOps) {
     @GET
     @Path("me")
     @Produces(MediaType.APPLICATION_JSON)
-    fun whoami() = mapOf("me" to myNode.config())
+    fun whoami() = SovrinNodeInfo(myNode.config().x500Name,
+                                                    Wallet(myNode.config().sovrinConfig.walletName
+                                                            ,myNode.config().sovrinConfig.didList.map { it.did }.toList()))
 
     /**
      * Returns all parties registered with the [NetworkMapService]. These names can be used to look up identities
@@ -36,30 +43,16 @@ class IndigoApi(val services: CordaRPCOps) {
     @GET
     @Path("AllPeers")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getAllPeers(): List<IndigoNode> {
-        val nodeInfo = services.networkMapSnapshot()
+    fun getAllPeers(): List<SovrinNodeInfo> {
+        val nodes = services.networkMapSnapshot()
 
-        return nodeInfo
+        return nodes
+                .filter { !myNode.legalIdentities.first().name.equals(it.legalIdentities.first().name) && !it.legalIdentities.first().name.organisation.equals("Controller")  }
                 .map { it.config() }
-                //filter out myself, notary and eventual network map started by driver
-                .filter { myNode.config().x500Name != it.x500Name  }
-                .toList()
+                .map { SovrinNodeInfo(it.x500Name,
+                        Wallet(it.sovrinConfig.walletName
+                                ,it.sovrinConfig.didList.map { it.did }.toList())) }
 
-    }
-
-    /**
-     * Returns all parties registered with the [NetworkMapService]. These names can be used to look up identities
-     * using the [IdentityService].
-     */
-    @POST
-    @Path("setupWallet")
-    @Produces(MediaType.APPLICATION_JSON)
-    fun setupWallet(): Response{
-        var wallet =  Wallet(myNode.config().sovrinWalletName,listOf(myNode.config().sovrinDID))
-
-        //TODO Call flow/Sovrin API to create wallet
-
-        return Response.ok().entity(wallet).build()
     }
 
 

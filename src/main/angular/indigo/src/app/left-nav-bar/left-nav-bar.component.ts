@@ -1,4 +1,4 @@
-import { me } from './../shared/models/corda-network';
+import { NodeInfo } from './../shared/models/corda-network';
 import { AbstractComponent } from './../shared/abstract-component';
 import { Utils } from './../utils';
 import { IndigoService } from './../shared/services/indigo.service';
@@ -14,10 +14,10 @@ import { ToastsManager } from 'ng2-toastr';
 export class LeftNavBarComponent extends AbstractComponent implements OnInit {
 
 
-  public myinfo: me;
+  public myinfo: NodeInfo;
   get meShort(): string {
     if (this.myinfo) {
-      return Utils.getShortName(this.myinfo.me.x500Name);
+      return Utils.getShortName(this.myinfo.x500Name);
     }
   }
 

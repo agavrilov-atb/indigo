@@ -1,16 +1,12 @@
-export class me {
-
-  me: Peer;
-  
-}
 
 
-export class Peer{
+export class NodeInfo{
 
   x500Name:string
-  sovrinDID:string
+  wallet:Wallet
 
 }
+
 
 export class Wallet{
 

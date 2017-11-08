@@ -73,6 +73,8 @@ dependencies {
 
     testCompile "net.corda:corda-node-driver:$corda_release_version"
 
+    compile "org.apache.cxf:cxf-rt-rs-security-cors:2.6.1"
+
     // CorDapp dependencies
     // Specify your cordapp's dependencies below, including dependent CorDapps.
     cordapp project(":oracle-base")
@@ -109,12 +111,22 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         rpcUsers = [[ user: "user1", "password": "test", "permissions": []]]
     }
     node {
-        name "O=Oracle,L=New York,C=US"
+        name "O=PartyB,L=London,C=GB"
         advertisedServices = []
         p2pPort 10008
         rpcPort 10009
         webPort 10010
-        cordapps = ["net.corda.examples.oracle:base:$version", "net.corda.examples.oracle:service:$version"]
+        cordapps = ["net.corda.examples.oracle:base:$version", "net.corda.examples.oracle:client:$version"]
         rpcUsers = [[ user: "user1", "password": "test", "permissions": []]]
     }
+    node {
+        name "O=PartyC,L=London,C=GB"
+        advertisedServices = []
+        p2pPort 10011
+        rpcPort 10012
+        webPort 10013
+        cordapps = ["net.corda.examples.oracle:base:$version", "net.corda.examples.oracle:client:$version"]
+        rpcUsers = [[ user: "user1", "password": "test", "permissions": []]]
+    }
+
 }
