@@ -55,6 +55,7 @@ export class TrustManagementComponent extends AbstractComponent implements OnIni
       trusts => {
         this.displaySpinner=false
         this.trusts = trusts
+        this.toastr.success('A new trust has been established successfully!', 'Success!');
       }
     ).catch(e=>{
       this.displaySpinner=false

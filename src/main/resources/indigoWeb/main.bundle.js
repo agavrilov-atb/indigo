@@ -999,6 +999,7 @@ var TrustManagementComponent = (function (_super) {
         this.trustService.setupTrust(trustRequest).then(function (trusts) {
             _this.displaySpinner = false;
             _this.trusts = trusts;
+            _this.toastr.success('A new trust has been established successfully!', 'Success!');
         }).catch(function (e) {
             _this.displaySpinner = false;
             console.log(e);
