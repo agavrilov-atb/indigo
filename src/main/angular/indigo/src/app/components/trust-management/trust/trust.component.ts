@@ -1,3 +1,4 @@
+import { Trust } from './../../../shared/models/corda-network';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TrustComponent implements OnInit {
 
   @Input() title;
-
+  @Input() trusts:Trust[];
   constructor() { }
 
   ngOnInit() {

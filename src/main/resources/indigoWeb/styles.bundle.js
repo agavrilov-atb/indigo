@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".success-snackbar{\n    background-color:green;\n    color:white;\n    bottom:0;\n}\n\n.failure-snackbar{\n    background-color: red;\n    color:white;\n}\n\n.panel-heading{\n    font-weight: bold;\n    font-size:15px;\n}\n.panel-danger>.panel-heading{\n   background:#d9534f;\n   color:#fff;\n   border-color: #d9534f;\n   \n}\n.text-danger{\n    color:#d9534f;\n}\nbody{\n    background-color:#f5f5f5\n}\n\n.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{\n    color:#d9534f\n}", ""]);
+exports.push([module.i, ".success-snackbar{\n    background-color:green;\n    color:white;\n    bottom:0;\n}\n\n.failure-snackbar{\n    background-color: red;\n    color:white;\n}\n\n.panel-heading{\n    font-weight: bold;\n    font-size:15px;\n}\n.panel-danger>.panel-heading{\n   background:#d9534f;\n   color:#fff;\n   border-color: #d9534f;\n   \n}\n.text-danger{\n    color:#d9534f;\n}\nbody{\n    background-color:#f5f5f5\n}\n\n.fa-spin,.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{\n    color:#d9534f\n}", ""]);
 
 // exports
 

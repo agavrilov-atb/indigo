@@ -19,7 +19,6 @@ export class IndigoService {
 
   
   fetchMe():Promise<NodeInfo> {
-    debugger;
     const req = Utils.getHttpRequest(this.baseUrl + '/api/com.indigo/me');
     return this._me ? Promise.resolve(this._me) :
      this.http.request(req)

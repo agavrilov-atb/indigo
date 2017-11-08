@@ -1,32 +1,55 @@
-<div class="container">
+<div class="container" style="min-width: 100%">
 <h2 class="text-danger">Trust Management</h2> 
-<h3>My DID <span class="label label-default">{{myDID}}</span></h3> 
 <br><br>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
         
                     <div class="panel panel-danger">
                             <div class="panel-heading">Setup Trust</div>
                             <div class="panel-body">
                                 
-                                    <form>
+                                    <form #setupTrustForm = "ngForm">
                                             <div class="form-group">
+                                                <label for="otherPartyDID">Select My DID:</label>
+                                                
+                                                <div *ngIf="me" class="input-group">
+                                                        <select  *ngFor="let did of me.wallet.storedDIDs" type="" class="form-control"  [(ngModel)]="mySelectedDID" name="mySelectedDID">
+                                                                <option>{{did}}</option>
+                                                        </select>      
+                                                        
+                                                </div>
+                                                <br>
                                               <label for="otherPartyDID">Other Party DID:</label>
-                                              <input class="form-control" id="otherPartyDID">
-                                            </div>
-                                        
-                                            <button type="submit" class="btn btn-danger">Setup</button>
+                                                
+                                              <div class="input-group">
+                                                        <input type="text" class="form-control" [(ngModel)]="otherPartySelectedDID" name="otherPartySelectedDID">
+                                                        <div class="input-group-btn">
+                                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                                                            <ul id="color-dropdown-menu" class="dropdown-menu dropdown-menu-right" role="menu">
+                                                                <li *ngFor="let did of otherNodeDids" class="input-lg">
+                                                                        <a href="javascript:void(0)" (click)="onSelectDID(did)">{{did.name + ' - ' + did.did}}</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                </div>
+
+                                                <label for="otherPartyDID">Other Party Name:</label>
+                                                <input type="text" class="form-control" [(ngModel)]="otherPartySelectedName" name="otherPartySelectedName">
+                                                
+                                           </div>
+                                            
+                                            <button *ngIf="!displaySpinner" type="submit" class="btn btn-danger" (click)="onSetupTrust(setupTrustForm.value)" >Setup</button>
+                                           
+                                            <i *ngIf="displaySpinner" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                                            <span class="sr-only">Loading...</span>
                                     </form>
                             </div>
                     </div>
             </div>
 
-            <div class="col-sm-8">
+            <div class="col-sm-9">
                     
-                    
-                    <trust title="Pending Trusts From Me"></trust>
-                    <trust title="Pending Trusts From Others"></trust>
-                    <trust title="Established Trusts"></trust>
+                    <trust [trusts]="trusts" title="Established Trusts"></trust>
             </div>
         
       </div> 

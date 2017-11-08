@@ -1,3 +1,4 @@
+import { TrustService } from './components/trust-management/services/trust.service';
 import { WalletService } from './components/wallet-management/service/wallet.service';
 import { AppRoutingModule } from './app-routing.module';
 import { CustomOption } from './shared/custom-toaster';
@@ -123,7 +124,7 @@ import { WalletManagementComponent } from './components/wallet-management/wallet
     AppRoutingModule
     
   ],
-  providers: [WalletService,IndigoService, {provide: ToastOptions, useClass: CustomOption}],
+  providers: [TrustService,WalletService,IndigoService, {provide: ToastOptions, useClass: CustomOption}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

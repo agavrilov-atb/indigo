@@ -4,17 +4,24 @@
     <table class="table table-bordered">
             <thead>
                 <tr>
-                <th>Name</th>
-                <th>Sovrin DID</th>
-                <th>Date</th>
-                <th>Action</th>
+                    <th>My DID</th>
+                    <th>Other Party Name</th>
+                    <th>OtherParty DID</th>
+                    <th>Pariwise DID</th>
+                    <th>Date</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let peer of peers">
+                <tr *ngFor="let trust of trusts">
                 
-                <td>{{peer.x500Name}}</td>
-                <td>{{peer.sovrinDID}}</td>
+                    <td>{{trust.myDID}}</td>
+                    <td>{{trust.otherPartyName}}</td>
+                    <td>{{trust.otherPartyDID}}</td>
+                    <td>{{trust.pairwiseDID}}</td>
+                    <td>{{trust.date}}</td>
+                    <td><button class="btn btn-danger" >View Claim Def</button>
+                    </td>
                 </tr>
                 
             </tbody>

@@ -29,7 +29,7 @@ export class LeftNavBarComponent extends AbstractComponent implements OnInit {
     debugger;
   this.indigoService.fetchMe().then(me => {
                    this.myinfo = me;
-            //       this.toastr.success(this.meShort + ' ,welcome to Corda-Sovrin!', 'Success!');
+                   this.toastr.success(this.meShort + ' ,welcome to Corda-Sovrin!', 'Success!');
                  }).catch(
                  e => {
                    console.log(e);
