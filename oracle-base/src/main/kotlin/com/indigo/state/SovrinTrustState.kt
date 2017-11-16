@@ -13,18 +13,19 @@ import javax.persistence.Table
 /**
  * Created by nxshah5 on 10/31/17.
  */
-data class SovrinTrustState(val party: Party, val partyDID:String, val otherPartyName:String, val otherPartyDID:String, val pairwiseDID:String)
+data class SovrinTrustState(val party: Party, val partyDID:String, val otherPartyName:String?=null, val otherPartyDID:String?=null, val pairwiseDID:String?=null)
     : QueryableState{
+
 
     override fun generateMappedObject(schema: MappedSchema): PersistentState {
         return when(schema){
 
                 is SovrinTrustSchemaV1 -> SovrinTrustSchemaV1.PersistentSovrinTrustState(
-                                                                this.party.name.toString()
-                                                                ,this.partyDID
-                                                                ,this.otherPartyName
-                                                                ,this.otherPartyDID
-                                                                ,this.pairwiseDID
+                                                                party.name.toString()
+                                                                ,partyDID
+                                                                ,otherPartyName
+                                                                ,otherPartyDID
+                                                                ,pairwiseDID
                                                             )
                 else -> throw IllegalArgumentException("Unrecognised schema $schema")
             }
@@ -56,13 +57,13 @@ object SovrinTrustSchemaV1 : MappedSchema(
             var did: String,
 
             @Column(name = "other_party_name")
-            var otherPartyName: String,
+            var otherPartyName: String?,
 
             @Column(name = "other_party_did")
-            var otherPartyDID: String,
+            var otherPartyDID: String?,
 
             @Column(name = "pairwise_did")
-            var pairwiseDID: String
+            var pairwiseDID: String?
 
 
     ) : PersistentState()
