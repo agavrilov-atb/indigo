@@ -55,7 +55,7 @@ class TrustFlowTest {
 
         val senderFlow = SetupTrustFlow.SetupTrustInitiateFlow(buyerNode.info.legalIdentities.first()
                                     ,"adfafadsfasdfasdfasfasdf"
-                                    ,buyerNode.info.legalIdentities.first())
+                                    ,buyerNode.info.legalIdentities.first(),"asdfasdfadfasdfasfasfasdf")
 
         var f =sellerNode.services.startFlow(senderFlow).resultFuture.toCompletableFuture()
         net.runNetwork()

@@ -5,6 +5,8 @@ import net.corda.core.identity.Party
 import net.corda.core.schemas.MappedSchema
 import net.corda.core.schemas.PersistentState
 import net.corda.core.schemas.QueryableState
+import java.sql.Timestamp
+import java.time.Instant
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table
@@ -13,7 +15,7 @@ import javax.persistence.Table
 /**
  * Created by nxshah5 on 10/31/17.
  */
-data class SovrinTrustState(val party: Party, val partyDID:String, val otherPartyName:String?=null, val otherPartyDID:String?=null, val pairwiseDID:String?=null)
+data class SovrinTrustState(val party: Party, val partyDID:String, val otherParty:Party, val otherPartyDID:String, val pairwiseDID:String,val trustCreated:Instant)
     : QueryableState{
 
 
@@ -23,9 +25,10 @@ data class SovrinTrustState(val party: Party, val partyDID:String, val otherPart
                 is SovrinTrustSchemaV1 -> SovrinTrustSchemaV1.PersistentSovrinTrustState(
                                                                 party.name.toString()
                                                                 ,partyDID
-                                                                ,otherPartyName
+                                                                ,otherParty.name.toString()
                                                                 ,otherPartyDID
                                                                 ,pairwiseDID
+                                                                ,trustCreated
                                                             )
                 else -> throw IllegalArgumentException("Unrecognised schema $schema")
             }
@@ -37,7 +40,7 @@ data class SovrinTrustState(val party: Party, val partyDID:String, val otherPart
 
 
     /** The public keys of the involved parties. */
-    override val participants: List<AbstractParty> get() = listOf(party)
+    override val participants: List<AbstractParty> get() = listOf(party,otherParty)
 }
 
 object SovrinTrustSchema
@@ -57,13 +60,16 @@ object SovrinTrustSchemaV1 : MappedSchema(
             var did: String,
 
             @Column(name = "other_party_name")
-            var otherPartyName: String?,
+            var otherPartyName: String,
 
             @Column(name = "other_party_did")
-            var otherPartyDID: String?,
+            var otherPartyDID: String,
 
             @Column(name = "pairwise_did")
-            var pairwiseDID: String?
+            var pairwiseDID: String,
+
+            @Column(name= "trust_created")
+            var trustCreated : Instant
 
 
     ) : PersistentState()

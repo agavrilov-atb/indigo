@@ -12,3 +12,9 @@ data class SovrinNodeInfo(val x500Name:CordaX500Name,val wallet:Wallet)
 data class TrustRequest(val myDid:String,val otherPartyName:String,val otherPartyDid:String)
 
 data class Trust(val myDID:String,val otherPartyName:String,val otherPartyDID:String,val pairwiseDID:String,val date:String)
+
+data class Message(val message: String){
+    override fun toString(): String {
+        return "message: $message"
+    }
+}

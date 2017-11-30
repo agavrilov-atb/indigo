@@ -39,7 +39,7 @@ open class TrustContract : Contract {
                         "There is no input" using inputs.isEmpty()
                         "There is only 1 output" using (outputs.size == 1)
                         "other party data is empty at this time" using (output.otherPartyDID == null
-                                                                        && output.otherPartyName == null && output.pairwiseDID == null)
+                                                                        && output.otherParty == null && output.pairwiseDID == null)
                     }
                 }
 
@@ -50,7 +50,7 @@ open class TrustContract : Contract {
 
                         "There is only 1 output" using (outputs.size == 1)
                         "There is only 0 input" using (inputs.size == 0)
-                        "Other party data should exist" using (output.otherPartyDID!=null && output.otherPartyName!=null && output.pairwiseDID!=null)
+                        "Other party data should exist" using (output.otherPartyDID!=null && output.otherParty!=null && output.pairwiseDID!=null)
 
                     }
 

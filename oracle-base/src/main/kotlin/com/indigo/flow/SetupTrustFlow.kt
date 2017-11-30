@@ -13,17 +13,17 @@ import net.corda.core.contracts.*
 import net.corda.core.identity.AbstractParty
 import net.corda.core.utilities.unwrap
 import net.corda.finance.utils.sumCashBy
+import java.time.Instant
 import java.util.*
 
 /**
  * Created by nxshah5 on 11/9/17.
  */
 object SetupTrustFlow {
-    @CordaSerializable
 
     @InitiatingFlow
     @StartableByRPC
-    class SetupTrustInitiateFlow(val me: Party, val myDID: String,val otherParty:Party) : FlowLogic<SignedTransaction>() {
+    class SetupTrustInitiateFlow(val me: Party, val myDID: String,val otherParty:Party,val otherPartyDID:String) : FlowLogic<SignedTransaction>() {
         override val progressTracker: ProgressTracker = tracker()
 
 
@@ -59,7 +59,7 @@ object SetupTrustFlow {
              */
             val session = initiateFlow(otherParty)
 
-            session.send(TrustRequest(me,myDID))
+            session.send(TrustRequest(me,myDID,otherPartyDID))
 
 
             progressTracker.currentStep = VERIFY_TRANSACTION
@@ -126,7 +126,7 @@ object SetupTrustFlow {
 
             val ptx = TransactionBuilder(serviceHub.networkMapCache.notaryIdentities.first())
 
-            ptx.addOutputState(SovrinTrustState(trustRequest.me,trustRequest.myDID,serviceHub.myInfo.legalIdentities.first().name.toString(),"",UUID.randomUUID().toString()),TrustContract.TRUST_PROGRAM_ID)
+            ptx.addOutputState(SovrinTrustState(trustRequest.me,trustRequest.myDID,serviceHub.myInfo.legalIdentities.first(),trustRequest.otherPartyDID,UUID.randomUUID().toString(), Instant.now()),TrustContract.TRUST_PROGRAM_ID)
             ptx.addCommand(TrustContract.Commands.Establish(), listOf(trustRequest.me.owningKey,serviceHub.myInfo.legalIdentities.first().owningKey))
 
             var partialSignedTx = serviceHub.signInitialTransaction(ptx)
@@ -150,6 +150,6 @@ object SetupTrustFlow {
 
 
     @CordaSerializable
-    data class TrustRequest(val me:Party,val myDID:String)
+    data class TrustRequest(val me:Party,val myDID:String,val otherPartyDID: String)
 
 }
