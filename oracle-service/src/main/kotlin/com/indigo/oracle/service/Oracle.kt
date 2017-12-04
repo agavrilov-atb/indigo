@@ -64,6 +64,9 @@ class Oracle(val services: ServiceHub) : SingletonSerializeAsToken() {
     private val proverVerkey = "~RJVdKmy1QiSPCkwNSA7MqL"
     private val proverSeed = "r3TestTrustAnchor00000000000000"
 
+    //TODO: incorporate ledger tests for saving data to ledger
+    //https://github.com/hyperledger/indy-sdk/blob/master/wrappers/java/src/test/java/org/hyperledger/indy/sdk/demo/LedgerDemoTest.java
+
 
     fun generateDID(): String {
         println("=== BEGIN DID GENERATION ===")

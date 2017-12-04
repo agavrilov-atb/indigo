@@ -36,7 +36,7 @@ class SovrinOracleServiceTests : TestDependencyInjectionBase() {
     }
 
     @Test
-    fun `create a data schema`() {
+    fun `create a claim definition`() {
         val newClaimDef = oracle.createClaimDef(schema)
         println("new data schema: $newClaimDef")
         assertNotNull(newClaimDef, "Built claim definition was null")

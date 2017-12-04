@@ -31,6 +31,11 @@ class SovrinOracleClientTests {
                 EstablishMasterSecretHandler::class.java,
                 StoreClaimOfferHandler::class.java,
                 GetClaimOffersHandler::class.java,
+                CreateClaimReqHandler::class.java,
+                CreateClaimHandler::class.java,
+                StoreClaimHandler::class.java,
+                ClaimsForProofRequestHandler::class.java,
+                CreateProofHandler::class.java,
                 SignSovrinHandler::class.java).forEach { oracle.registerInitiatedFlow(it) }
         oracle.internals.installCordaService(com.indigo.oracle.service.Oracle::class.java)
 
@@ -44,7 +49,7 @@ class SovrinOracleClientTests {
     }
 
     @Test
-    fun `oracle generates a did`() {
+    fun `complete anon creds demo flow from client`() {
         val flow = a.services.startFlow(SovrinFlow())
         mockNet.runNetwork()
         val result = flow.resultFuture.getOrThrow().tx.outputsOfType<DIDState>().single()

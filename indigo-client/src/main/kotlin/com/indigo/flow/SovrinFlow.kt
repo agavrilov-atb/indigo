@@ -1,5 +1,6 @@
 package com.indigo.flow
 
+import com.beust.klaxon.*
 import co.paralleluniverse.fibers.Suspendable
 import com.indigo.contract.DIDContract
 import com.indigo.contract.DIDState
@@ -21,10 +22,15 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
     companion object {
         object SET_UP : ProgressTracker.Step("Initialising flow.")
         object GENERATING_DID : ProgressTracker.Step("Requesting a new DID from the Oracle.")
-        object CREATING_SCHEMA : ProgressTracker.Step("Creating a new Sovrin data schema.")
+        object CREATING_CLAIM_DEF : ProgressTracker.Step("Creating a new Sovrin claim definition.")
         object ESTABLISHING_MASTER_SECRET : ProgressTracker.Step("Establishing a master secret.")
         object STORING_CLAIM_OFFER : ProgressTracker.Step("Storing a claim offer.")
         object GETTING_DATA_SCHEMA : ProgressTracker.Step("Getting a data schema.")
+        object CREATING_CLAIM_REQUEST : ProgressTracker.Step("Creating a claim request.")
+        object CREATING_CLAIM : ProgressTracker.Step("Creating a claim.")
+        object STORING_CLAIM: ProgressTracker.Step("Storing a claim.")
+        object GETTING_CLAIMS_FOR_PROOF_REQUEST : ProgressTracker.Step("Getting claims for proof request.")
+        object CREATING_PROOF_HANDLER : ProgressTracker.Step("Creating a proof.")
         object BUILDING_THE_TX : ProgressTracker.Step("Building transaction.")
         object VERIFYING_THE_TX : ProgressTracker.Step("Verifying transaction.")
         object WE_SIGN : ProgressTracker.Step("signing transaction.")
@@ -35,10 +41,15 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
 
         fun tracker() = ProgressTracker(SET_UP,
                 GENERATING_DID,
-                CREATING_SCHEMA,
+                CREATING_CLAIM_DEF,
                 ESTABLISHING_MASTER_SECRET,
                 STORING_CLAIM_OFFER,
                 GETTING_DATA_SCHEMA,
+                CREATING_CLAIM_REQUEST,
+                CREATING_CLAIM,
+                STORING_CLAIM,
+                GETTING_CLAIMS_FOR_PROOF_REQUEST,
+                CREATING_PROOF_HANDLER,
                 BUILDING_THE_TX,
                 VERIFYING_THE_TX,
                 WE_SIGN,
@@ -60,12 +71,13 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
         progressTracker.currentStep = GENERATING_DID
         val sovrinDIDFromOracle = subFlow(GenerateDID(oracle))
 
-        progressTracker.currentStep = CREATING_SCHEMA
-        val schema = "{\"seqNo\":1,\"data\": {\"name\":\"gvt\",\"version\":\"1.0\",\"keys\":[\"age\",\"sex\",\"height\",\"name\"]}}"
-        val newSchema = subFlow(CreateClaimDef(oracle, schema))
+        progressTracker.currentStep = CREATING_CLAIM_DEF
+        val schemaJson = "{\"seqNo\":1,\"data\": {\"name\":\"gvt\",\"version\":\"1.0\",\"keys\":[\"age\",\"sex\",\"height\",\"name\"]}}"
+        val claimDef = subFlow(CreateClaimDef(oracle, schemaJson))
 
         progressTracker.currentStep = ESTABLISHING_MASTER_SECRET
-        subFlow(EstablishMasterSecret(oracle, "mastersecret"))
+        val masterSecret = "mastersecret"
+        subFlow(EstablishMasterSecret(oracle, masterSecret))
 
         progressTracker.currentStep = STORING_CLAIM_OFFER
         val issuerDid = "W4SGRU86Z58d6TV7PBUe6g" //part of agent code, DID of trust anchor
@@ -74,7 +86,26 @@ class SovrinFlow : FlowLogic<SignedTransaction>() {
 
         progressTracker.currentStep = GETTING_DATA_SCHEMA
         val claimOfferFilter = "{\"issuer_did\":\"$issuerDid\"}"
-        val retrievedSchema = subFlow(GetClaimOffers(oracle, claimOfferFilter))
+        val claimOffersJson = subFlow(GetClaimOffers(oracle, claimOfferFilter))
+        val claimOffersObject = Parser().parse(StringBuilder(claimOffersJson)) as JsonArray<JsonObject>
+        val claimOfferObject = claimOffersObject.get(0)
+
+        progressTracker.currentStep = CREATING_CLAIM_REQUEST
+        //TODO: find a better way to pass parameters across flows
+        val claimReq = subFlow(CreateClaimReq(oracle, claimOfferObject.toJsonString(), claimDef, masterSecret)).first()
+
+        progressTracker.currentStep = CREATING_CLAIM
+        val claimAttributes = "{\"sex\":[\"male\",\"5944657099558967239210949258394887428692050081607692519917050011144233115103\"],\"name\":[\"Alex\",\"1139481716457488690172217916278103335\"],\"height\":[\"175\",\"175\"],\"age\":[\"28\",\"28\"]}"
+        val createClaimResult = subFlow(CreateClaim(oracle, claimReq, claimAttributes)).first()
+
+        progressTracker.currentStep = STORING_CLAIM
+        subFlow(StoreClaim(oracle, createClaimResult))
+
+        progressTracker.currentStep = GETTING_CLAIMS_FOR_PROOF_REQUEST
+        val proofRequest = "{\"nonce\":\"123432421212\",\"name\":\"proof_req_1\",\"version\":\"0.1\",\"requested_attrs\":{\"attr1_uuid\":{\"schema_seq_no\":1,\"name\":\"name\"},\"attr2_uuid\":{\"schema_seq_no\":1,\"name\":\"sex\"}},\"requested_predicates\":{\"predicate1_uuid\":{\"attr_name\":\"age\",\"p_type\":\"GE\",\"value\":18}}}"
+        val claimsForProof = subFlow(ClaimsForProofRequest(oracle, proofRequest))
+
+        progressTracker.currentStep = CREATING_PROOF_HANDLER
 
         progressTracker.currentStep = BUILDING_THE_TX
         val didState = DIDState(sovrinDIDFromOracle, ourIdentity)
