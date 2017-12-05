@@ -26,7 +26,6 @@ export class LeftNavBarComponent extends AbstractComponent implements OnInit {
     super(indigoService,toastr,vcr)
   }
   ngOnInit() {
-    debugger;
   this.indigoService.fetchMe().then(me => {
                    this.myinfo = me;
                    this.toastr.success(this.meShort + ' ,welcome to Corda-Sovrin!', 'Success!');

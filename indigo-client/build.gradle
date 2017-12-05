@@ -49,6 +49,10 @@ configurations {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    //built from https://github.com/hyperledger/indy-sdk/tree/master/wrappers/java
+    compile fileTree(dir: 'lib', include: ['indy-1.0.1.jar'])
+    //required by indy-sdk
+    compile 'net.java.dev.jna:jna:4.4.0'
     compile 'com.beust:klaxon:0.30'
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     testCompile "junit:junit:$junit_version"

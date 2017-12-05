@@ -10,14 +10,13 @@ import { Constants } from '../../../config';
 @Injectable()
 export class WalletService {
 
-  
-  
-  constructor(private http: Http) { 
+
+
+  constructor(private http: Http) {
   }
-  
+
   setupWallet():Promise<Wallet> {
-    debugger;
-    const req = Utils.postHttpRequest(Constants.baseUrl + '/api/com.indigo/setupWallet',null);
+    const req = Utils.postHttpRequest(Constants.baseUrl + '/api/sovrin/setupWallet',null);
     return  this.http.request(req)
                 .toPromise()
                 .then( res=> res.json() as Wallet)
@@ -25,8 +24,8 @@ export class WalletService {
                  return Utils.handleError(error);
 
                });
-    
+
   }
 
-  
+
 }
