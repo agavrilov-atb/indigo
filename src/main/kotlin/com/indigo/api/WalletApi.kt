@@ -1,15 +1,16 @@
 package com.indigo.api
 
-import com.indigo.api.data.Wallet
-import com.indigo.config.NodeConfig
-import com.indigo.config.config
+import com.beust.klaxon.JsonObject
+import com.indigo.flow.SetupWalletFlow
 import net.corda.core.messaging.CordaRPCOps
+import net.corda.core.messaging.startTrackedFlow
+import net.corda.core.utilities.getOrThrow
 import net.corda.core.utilities.loggerFor
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing
-import javax.ws.rs.GET
 import javax.ws.rs.POST
 import javax.ws.rs.Path
 import javax.ws.rs.Produces
+import javax.ws.rs.QueryParam
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
@@ -25,8 +26,6 @@ class WalletApi(val services: CordaRPCOps) {
         val logger = loggerFor<WalletApi>()
     }
 
-
-
     /**
      * Returns all parties registered with the [NetworkMapService]. These names can be used to look up identities
      * using the [IdentityService].
@@ -34,12 +33,28 @@ class WalletApi(val services: CordaRPCOps) {
     @POST
     @Path("setupWallet")
     @Produces(MediaType.APPLICATION_JSON)
-    fun setupWallet(): Response{
-        var wallet =  Wallet(myNode.config().sovrinConfig.walletName,myNode.config().sovrinConfig.didList.map { it.did }.toList())
+    fun setupWallet(@QueryParam("name") name: String): Response {
+        if ( name.isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Query parameter 'name' must be specified.\n").build()
+        }
 
-        //TODO Call flow/Sovrin API to create wallet
+        var status: Response.Status
+        var msg: String
+        try {
+            val flowHandle = services.startTrackedFlow(::SetupWalletFlow, name)
 
-        return Response.ok().entity(wallet).build()
+            // The line below blocks and waits for the future to resolve.
+            flowHandle.returnValue.getOrThrow()
+
+            status = Response.Status.CREATED
+            msg = JsonObject(mutableMapOf("result" to "Sovrin wallet $name committed to ledger")).toJsonString()
+        } catch (ex: Throwable) {
+            status = Response.Status.BAD_REQUEST
+            msg = JsonObject(mutableMapOf("result" to ex.message!!)).toJsonString()
+            logger.error(msg, ex)
+        }
+
+        return Response.status(status).entity(msg).build()
     }
 
 

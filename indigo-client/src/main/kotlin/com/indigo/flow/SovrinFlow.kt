@@ -1,7 +1,9 @@
 package com.indigo.flow
 
-import com.beust.klaxon.*
 import co.paralleluniverse.fibers.Suspendable
+import com.beust.klaxon.JsonArray
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.Parser
 import com.indigo.contract.DIDContract
 import com.indigo.contract.DIDState
 import com.indigo.contract.DID_PROGRAM_ID

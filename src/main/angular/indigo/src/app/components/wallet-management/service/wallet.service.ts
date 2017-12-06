@@ -16,7 +16,7 @@ export class WalletService {
   }
 
   setupWallet():Promise<Wallet> {
-    const req = Utils.postHttpRequest(Constants.baseUrl + '/api/sovrin/setupWallet',null);
+    const req = Utils.postHttpRequest(Constants.baseUrl + '/api/com.indigo/setupWallet',null);
     return  this.http.request(req)
                 .toPromise()
                 .then( res=> res.json() as Wallet)

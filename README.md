@@ -32,3 +32,5 @@ Our goal is to demonstrate a proof of concept to R3 members to demonstrate the v
 
 **Note:** If you want to build gradle without running test cases run this cmd
 `./gradlew clean build deployNodes -x test`
+
+In order to reach the Angular UI install an extension to support CORS https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en

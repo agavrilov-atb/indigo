@@ -108,7 +108,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         rpcPort 10006
         webPort 10007
         h2Port 11002
-        cordapps = ["com.indigo:oracle-base:$version", "com.indigo:oracle-service:$version"]
+        cordapps = ["com.indigo:indigo-client:$version"]
         rpcUsers = [[ user: "user1", "password": "test", "permissions": []]]
     }
     node {
@@ -118,7 +118,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         rpcPort 10009
         webPort 10010
         h2Port 11003
-        cordapps = ["com.indigo:oracle-base:$version", "com.indigo:oracle-service:$version"]
+        cordapps = ["com.indigo:indigo-client:$version"]
         rpcUsers = [[ user: "user1", "password": "test", "permissions": []]]
     }
     node {
@@ -128,7 +128,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         rpcPort 10012
         webPort 10013
         h2Port 11004
-        cordapps = ["com.indigo:oracle-base:$version", "com.indigo:oracle-service:$version"]
+        cordapps = ["com.indigo:indigo-client:$version"]
         rpcUsers = [[ user: "user1", "password": "test", "permissions": []]]
     }
 
