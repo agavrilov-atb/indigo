@@ -1,4 +1,5 @@
-# Project Indigo #
+﻿# Project Indigo #
+# adding Master branch to test Github builds #
 
 R3 and its members are exploring the use of distributed ledger technology to build a decentralized identity platform. The platform would be used by participants to identify individuals and entities they wish to transact with. Sovrin is a global, decentralized identity network that allows people and organizations to create portable, self-sovereign digital identities which they control, and which can't be taken away by any government or organization.
 
